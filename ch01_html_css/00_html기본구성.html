@@ -1,22 +1,55 @@
+
+<!-- html문서에서의 주석. 단축키 [Ctrl + /] -->
+<!-- 자동완성으로 html5를 선택하면 기본틀을 만들어 준다. -->
+
+<!-- 이 html문서의 버전이 5다 -->
 <!DOCTYPE html>
+
+<!-- 이 html문서의 주요 언어 정의. 한국어면 ko -->
+<!-- 검색 엔진에서 이 부분을 참고함 -->
 <html lang="en">
+
+<!-- 이렇게 열고 닫히는 괄호를 태그라고 부른다. -->
 <head>
+
+    <!-- 메타 정보 (초기 설정 정보) -->
+    <!-- 문자 인코딩 타입 지정 -->
     <meta charset="UTF-8">
+    <!-- 기기 화면 사이즈에 비율을 맞추라는 의미 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 페이지명, 북마크시 들어가는 제목 -->
     <title>My Way</title>
 
+    <!-- 파비콘(favicon) 넣기 -->
+    <!-- 파비콘용 link태그는 head 태그 내에 있어야 동작 -->
+    <link rel="shortcut icon" href="../resources/images/favicon-32x32.png">
+
+    <!-- style 태그 내에는 css코드 작성 -->
     <style>
+        /* CSS 주석 */
+        /* CSS는 body 태그 내 html 태그 요소들을 꾸며주는 역할 */
         .text-title{
-            background-color: blueviolet;
+            background-color: rgb(100, 231, 214);
             color: aliceblue;
+            text-align: center;
         }
     </style>
 </head>
 <body>
+    <!-- body 안에는 html 태그 요소(element)들 작성 -->
+
+    <!-- h태그는 글자크기 및 굵음, 마진 등이 정해져 있음 -->
+    <!-- 한줄 다 차지 -->
     <h1 class="text-title">난 나의 길을 걷는다. -은식</h1>
+
+    <!-- 버튼 클릭시 onclick에 입력한 f_click() 함수가 실행됨 -->
     <input type="button" value="추천" onclick="f_click()">
 
+    <!-- script 태그 내에는 JavaScript 코드 작성 -->
     <script>
+        // 자바스크립트 주석
+        /* 멀티라인 주석 */
         function f_click(){
             alert("추천 완료!!");
         }
