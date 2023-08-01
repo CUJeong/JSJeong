@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>label태그</title>
+
+    <style>
+
+        input::placeholder {
+            color: #d9d9d9
+        }
+
+        .dust-class {
+            width: 50%;
+            box-sizeing: border-box;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .dust-class label {
+            display: inline-block;
+            position: absolute;
+            top: -5px;
+            left: 14px;
+            padding: 10px;
+            background: white;
+            font-size: 14px;
+            color: #888;
+            font-weight: bold;
+        }
+
+        .dust-class.ver2 label {
+            top: initial;
+            bottom: -20px;
+        }
+
+        .dust-class label span {
+            color: #da4841;
+            vertical-align: -1px;
+        }
+
+        .dust-class input {
+            width: 100%;
+            border: 1px solid #dddddd !important;
+            font-size: 1rem;
+            line-height: 1.45;
+            letter-spacing: -0.04rem;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- label의 for에는 input태그의 id를 일치시킨다. -->
+    <!-- label 클릭시 해당 input 태그를 클릭한 효과 -->
+    <label for="inputId">아이디</label>
+    <input type="text" id="inputId">
+
+    <div class="dust-class">
+        <label for="itemname"><span>* </span>아이디</label>
+        <input type="text" class="txt-input" id="itemname" placeholder="아이디를 입력해주세요." value="dust">
+    </div>
+    <div class="dust-class">
+        <label for="itempw"><span>* </span>비밀번호</label>
+        <input type="text" class="txt-input" id="itempw" placeholder="비밀번호를 입력해주세요." value="">
+    </div>
+    <div class="dust-class ver2">
+        <label for="itemnew"><span>* </span>밑에서 입력</label>
+        <input type="text" class="txt-input" id="itemnew" placeholder="label 위치를 확인해보세요." value="">
+    </div>
+
+    <hr>
+
+    <!-- 사용자 편의성 증가(UX) -->
+    <label for="rememberId">아이디 기억하기</label>
+    <input type="checkbox" id="rememberId" value="rememberId">
+
+    <hr>
+
+    <label for="radioMale">남</label>
+    <input type="radio" name="gender" id="radioMale">
+    <label for="radioFemale">여</label>
+    <input type="radio" name="gender" id="radioFemale">
+
+
+
+</body>
+
+</html>

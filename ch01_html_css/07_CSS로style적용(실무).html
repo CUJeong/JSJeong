@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS(실무)</title>
+    <!-- 중복코드는 언제나 최소화하는 것이 좋다. -->
+    <!-- 코드의 재사용성 증가, 수정이 용이해진다. -->
+    
+    <style>
+        .h-100{
+            height: 100px;
+        }
+
+        .h-400{
+            height: 400px;
+        }
+
+        .bg-am{
+            background-color: aquamarine;
+        }
+
+        .bg-bq{
+            background-color: bisque;
+        }
+
+        .basic-border{
+            border: 1px solid black;
+        }
+
+        .h-33{
+            height: 33%;
+        }
+
+    </style>
+
+</head>
+<body>
+    <!-- 하나의 태그에 띄어쓰기를 통해 여러개의 클래스를 적용할 수 있다. -->
+    <div class="h-100 bg-am"></div>
+    <div class="h-400 bg-bq">
+        <div class="basic-border h-33"></div>
+        <div class="basic-border h-33"></div>
+        <div class="basic-border h-33"></div>
+    </div>
+    <div class="h-100 basic-border"></div>
+
+</body>
+</html>

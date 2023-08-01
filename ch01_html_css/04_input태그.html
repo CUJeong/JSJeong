@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input태그</title>
+
+    <style>
+        textarea{
+            resize: none;
+        }
+    </style>    
+</head>
+<body>
+    <!-- input text에 적히는 내용은 value 값에 해당 -->
+    <input type="text" value="" placeholder="아이디 입력..">
+
+    <!-- 따로 클릭 이벤트 처리를 해주지 않으면 -->
+    <!-- 클릭을 해도 아무일도 일어나지 않는다. -->
+    <input type="button" value="클릭" onclick="">
+    <!-- input button의 강화판 -->
+    <button onclick="">클릭</button>
+    <button onclick="">
+        <img src="https://cdn-icons-png.flaticon.com/512/3031/3031293.png" alt="" width="50" height="50">
+    </button>
+
+    <hr>
+
+    <!-- 사용자로부터 파일을 입력받음(파일첨부) -->
+    <input type="file">
+
+    <hr>
+
+    <!-- 라디오 버튼 -->
+    <!-- name 속성을 일치시키면 그룹화가 된다. -->
+    <!-- 속성란에 checked 를 적어주면 처음에 클릭이 되어있다. -->
+    남<input type="radio" name="gender" value="male" checked> 여<input type="radio" name="gender" value="female">
+
+    <hr>
+
+    <!-- 체크박스 -->
+    <!-- name 속성을 일치시켜 그룹화를 해주기 -->
+    자신있는 과목 (중복체크 가능) <br>
+    JAVA <input type="checkbox" name="favor" value="java" checked>
+    SQL <input type="checkbox" name="favor" value="sql">
+    HTML <input type="checkbox" name="favor" value="html">
+
+    <hr>
+
+    이 사이트를 어떻게 알게되었나요? <br>
+    <select name="" id="">
+        <option value="internet">인터넷 검색</option>
+        <option value="friend">친구 추천</option>
+        <option value="etc" selected>기타</option>
+    </select>
+
+    <hr>
+
+    <!-- 한줄 이상을 입력 받는 경우 사용 -->
+    <!-- cols가 30이면, 글자 30자 입력시 다음줄로 넘어가는 영역 -->
+    <!-- rows가 10이면, 10줄 입력 영역으로 생성됨 -->
+    <!-- CSS로 resize: none 를 넣어주면 사용자가 크기 조정 못하게함 -->
+    <textarea name="" id="" cols="30" rows="5"></textarea>
+
+    <!-- input hidden -->
+    <!-- 개발자가 백앤드에서 사용할 값을 사용자에게 노출하지 않는 용도로 사용 -->
+    <input type="hidden" name="id" value="superman">
+
+    <hr>
+
+    좋아하는 색 선택 <br>
+    <input type="color">
+
+    <hr>
+
+    학교 졸업일자 <br>
+    <input type="date">
+
+    <hr>
+
+    경력 <br>
+    <input type="number">
+
+    <hr>
+
+    음량 <input type="range" min="0" max="100">
+    <br>
+    마이크볼륨 <input type="range" min="0" max="100" step="10">
+
+    <!-- 위 color 부터 range까지는 유용한 툴이지만 -->
+    <!-- 브라우저별로 나타나는 모양이 달라서 실제 서비스할때는 -->
+    <!-- 별도로 만드는 경우도 많다. -->
+
+</body>
+</html>

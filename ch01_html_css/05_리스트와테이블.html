@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리스트와테이블</title>
+</head>
+<body>
+    <!-- ol태그, ordered list, 리스트 번호 붙여서 나열 -->
+    <ol>
+        <!-- list item, ol태그 안에 나열될 리스트 요소 -->
+        <li>제육볶음</li>
+        <li>돈까스</li>
+        <li>짜장면</li>
+    </ol>
+
+    <!-- ul태그, unordered list, 숫자없이 리스트를 나열  -->
+    <ul>
+        <li>탕수육</li>
+        <li>짬뽕</li>
+        <li>잡채밥</li>
+    </ul>
+
+    <!-- table, 행열을 이용한 격자 구조를 만들 수 있다. -->
+    <!-- tr: table row (한 행), td: table data (tr 태그내 요소들) -->
+    <table border="1">
+        <tr>
+            <td>100</td>
+            <td>200</td>
+            <td>300</td>
+        </tr>
+        <tr>
+            <td>400</td>
+            <td>500</td>
+            <td>600</td>
+        </tr>
+        <tr>
+            <td>700</td>
+            <td>800</td>
+        </tr>
+    </table>
+
+    <table border="1">
+        <tr>
+            <!-- table header -->
+            <th>식당</th>
+            <th>추천메뉴</th>
+            <th>별점</th>
+        </tr>
+        <tr>
+            <td>금성냉면</td>
+            <td>고등어백반</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>맛고을</td>
+            <td>김치찌개</td>
+            <td>5</td>
+        </tr>    
+    </table>
+
+    <h7>쩰 작은 글씨</h7>
+
+    <!-- 정석 테이블 -->
+    <table border="1">
+        <!-- 테이블명 -->
+        <caption>
+            맛집 리스트
+        </caption>
+
+        <thead>
+            <tr>
+                <th>식당</th>
+                <th>추천메뉴</th>
+                <th>별점</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>한솥도시락</td>
+                <td>새우돈까스덮밥</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>맛고을</td>
+                <td>제육볶음</td>
+                <td>4.5</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <!-- rowspan과 colspan -->
+    <table border="1">
+        <tr>
+            <th>1열</th>
+            <th>2열</th>
+            <th>3열</th>
+        </tr>
+        <tr>
+            <td rowspan="2">1행 1열</td>
+            <td>1행 2열</td>
+            <td>1행 3열</td>
+        </tr>
+        <tr>
+            <!-- 윗줄에서 이미 rowspan을 했기 때문에 나머지 두개만 필요 -->
+            <td>2행 2열</td>
+            <td>2행 3열</td>
+        </tr>
+        <tr>
+            <td colspan="3">3행 1열</td>
+        </tr>
+
+    </table>
+
+
+
+
+
+</body>
+</html>
