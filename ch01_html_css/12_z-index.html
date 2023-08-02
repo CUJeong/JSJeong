@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>z-index</title>
+
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+        }
+
+        .apple{
+            background-color: red;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            /* z-index는 기본적으로 0이 디폴트 */
+            z-index: 3;
+        }
+
+        .banana{
+            background-color: yellow;
+            position: absolute;
+            left: 200px;
+            top: 200px;
+
+            z-index: 2;
+        }
+
+        .melon{
+            background-color: greenyellow;
+            position: absolute;
+            left: 300px;
+            top: 300px;
+
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- z-index를 적용했기 때문에 순서를 바꾸어도 -->
+    <!-- 의도한대로 배치할 수 있다. -->
+    <div class="melon">멜론</div>
+    <div class="banana">바나나</div>
+    <div class="apple">사과</div>
+
+</body>
+</html>

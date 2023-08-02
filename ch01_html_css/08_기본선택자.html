@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기본선택자</title>
+
+    <style>
+        /* *은 모든 태그를 선택하는 선택자 */
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 태그 이름을 적으면 해당 모든 태그를 선택 */
+        img{
+            width: 400px;
+        }
+
+        /* .클래스명으로 클래스를 포함하는 태그 선택 */
+        /* 보통 여러 태그에 동일한 디자인을 적용하기 위해 사용 */
+        /* CSS로 하나의 태그에만 스타일을 적용할지라도 */
+        /* 되도록 클래스를 이용!! */
+        .cl-title{
+            background-color: yellow;
+        }
+
+        /* #아이디명 으로 해당 아이디를 가지는 태그 선택 가능 */
+        /* 보통 아이디를 이용해서 CSS에 스타일을 적용하는건 드문편 */
+        #container{
+            height: 700px;
+            background-color: antiquewhite;
+        }
+
+        /* 태그의 속성값을 이용하여 특정 태그 선택 가능 */
+        input[type=text]{
+            width: 300px;
+            height: 60px;
+        }
+
+        input[type=button]{
+            margin: 20px;
+            width: 60px;
+            height: 60px;
+        }
+
+        /* 선택자 > div : 선택자의 자식에 해당하는 div 태그 선택 */
+        #container > div{
+            height: 100px;
+        }
+
+        /* 선택자 div : 선택자의 모든 자손에 해당하는 div 태그 선택 */
+        #container div{
+            border: 1px solid black;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1 class="cl-title">제목</h1>
+    <p>서브제목</p>
+
+    <img src="https://i1.daumcdn.net/thumb/C230x300/?fname=https://t1.daumcdn.net/cfile/tistory/99D3583359E8C8511E" alt="">
+    <img src="https://i.namu.wiki/i/qxW3nOx3cDu6UGSaGTKm7CkJgbpI5CMJHIqll3YMAH7DhCNJI2e60D5vMOrepRacs4SsZHE_fx3J0JfKy4NNNQ.gif" alt="">
+
+    <!-- id는 전체 문서 내에서 고유한 값으로 부여한다. -->
+    <!-- 특정 태그를 하나 선택하기 위해 사용되는 것이 id다. -->
+    <div id="container">
+        <div>첫번째</div>
+        <div>
+            <div>두번째</div>
+        </div>
+        <div>세번째</div>
+    </div>
+
+    <input type="text">
+    <input type="button">
+
+</body>
+</html>

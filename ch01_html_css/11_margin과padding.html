@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마진과패딩</title>
+
+    <style>
+        div{
+            /* border(경계선)를 기준으로 안쪽 여백 padding */
+            /* 바깥쪽 여백 margin */
+            border: 1px solid black;
+        }
+
+        .container{
+            width: 500px;
+            height: 500px;
+            background-color: burlywood;
+
+            padding: 50px;
+        }
+
+        .top{
+            height: 200px;
+            background-color: aqua;
+
+            margin-bottom: 50px;
+        }
+
+        .bottom{
+            height: 200px;
+            background-color: aquamarine;
+        }
+
+        img{
+            width: 20px;
+            height: 20px;
+            border: 1px solid black;
+
+            /* 마우스를 올리면 커서가 변함 */
+            cursor: pointer;
+        }
+
+        .top > img{
+            margin: 20px;
+        }
+
+        .bottom > img{
+            padding: 20px;
+        }
+
+        button{
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="top">
+            <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png" alt="">
+        </div>
+        <div class="bottom">
+            <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png" alt="">
+        </div>
+    </div>
+
+    <input type="text"><button>검색</button>
+
+</body>
+</html>

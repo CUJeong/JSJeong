@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB색상</title>
+
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            border: 1px solid white;
+        }
+
+        body{
+            background-color: black;
+        }
+
+        .name-color{
+            /* 이미 정의되어 있는 색상 이름 사용 */
+            background-color: red;
+        }
+
+        .rgb-color{
+            background-color: rgb(255, 0, 0);
+        }
+
+        .hash-color{
+            background-color: #ff0000;
+        }
+
+        .hash-short{
+            background-color: #f00;
+        }
+
+        .rgba-color{
+            /* rgba에서 a는 알파(alpha)값을 의미 */
+            /* 투명도 (0 ~ 1 사이의 소수), 0은 완전 투명 */
+            background-color: rgba(255, 0, 0, 0.534);
+        }
+
+        .hash-rgba{
+            background-color: #ff000088;
+        }
+
+        /* 투명색? */
+        .name-transparent{
+            background-color: transparent;
+        }
+
+        .rgba-transparent{
+            background-color: rgba(123, 123, 123, 0);
+        }
+
+        .opacity-transparent{
+            background-color: #f00;
+            /* 투명도 50%, 알파값과 같은 동작 */
+            opacity: 0.5;
+        }
+
+        /* 선택자:hover */
+        /* 마우스를 해당 태그에 올렸을때의 스타일을 지정해줄 수 있다.*/
+        /* 마우스가 해당 태그를 벗어나면 기존 스타일로 돌아온다. */
+        /* 선택자 뒤에 콜론(:)을 이용하여 특정 상황에 대한 스타일을 */
+        /* 적용시키는 것을 가상클래스를 이용한다고 한다. */
+        /* JavaScript로 구현해야할 기능들을 CSS로 처리 가능해진다. */
+        .opacity-transparent:hover{
+            opacity: 0.7;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="name-color"></div>
+    <div class="rgb-color"></div>
+    <div class="hash-color"></div>
+    <div class="hash-short"></div>
+    <div class="rgba-color"></div>
+    <div class="hash-rgba"></div>
+    <div class="opacity-transparent"></div>
+
+
+</body>
+</html>

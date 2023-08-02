@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS적용순서</title>
+
+    <style>
+        /* 전체 태그에 스타일 적용 */
+        *{
+            margin: 0;
+        }
+
+        /* 전체 div 태그에 스타일 적용 */
+        div{
+            width: 100px;
+            height: 100px;
+            margin: 50px;
+            border: 2px solid black;
+        }
+
+        /* 특정 클래스에 스타일 적용 */
+        .box{
+            margin: 100px;
+        }
+
+        /* 특정 id에 스타일 적용 */
+        #idBox{
+            margin: 150px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <div></div>
+    <div class="box"></div>
+    <div id="idBox" class="box"></div>
+
+    <!-- 태그 자체에 스타일을 적용하는 것이 가장 나중에 적용된다. -->
+    <div id="idBox" class="box" style="margin: 200px;"></div>
+
+</body>
+</html>

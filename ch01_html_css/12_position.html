@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position</title>
+
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+
+        .container{
+            margin-top: 100px;
+            width: 1000px;
+            height: 1000px;
+        }
+
+        .apple{
+            /* position은 static이 기본값 */
+            position: static;
+            /* position:static은 left와 top을 주더라도 움직이지 않음 */
+            left: 100px;
+            top: 100px;
+        }
+
+        .banana{
+            /* position: relative는 원래 지점에서 */
+            /* left와 top의 값만큼 이동시킬 수 있다. */
+            position: relative;
+            left: 400px;
+            top: 100px;
+        }
+
+        .melon{
+            /* absolute는 부모의 좌측 상단 모서리를 기준으로 */
+            /* 부모의 position이 relative가 아니라면 */
+            /* 부모의 좌측 상단 모서리가 아닌, 화면 좌측 상단 모서리를 기준으로 한다. */
+            /* left와 top만큼 이동시킬 수 있다. */
+            position: absolute;
+            left: 300px;
+            top: 100px;
+        }
+
+        .mother{
+            position: relative;
+        }
+
+        .mother > div{
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .father{
+            position: relative;
+        }
+
+        .father > div{
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .parent{
+            position: relative;
+        }
+
+        .parent > div{
+            position: absolute;
+            /* 50%는 부모 크기의 해당 */
+            left: 50%;
+            top: 50%;
+            width: 50px;
+            height: 50px;
+        }
+
+        .quick{
+            /* 브라우저를 기준으로 위치가 고정됨 */
+            /* 빠른 메뉴나 페이지 상단으로 이동시켜주는 버튼 구현에 쓰임 */
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+
+            width: 40px;
+            height: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container" id="top">
+        <div class="apple">사과</div>
+        <div class="banana">바나나</div>
+        <div class="melon">멜론</div>
+
+        <div class="mother">
+            <div></div>
+        </div>
+        <div class="father">
+            <div></div>
+        </div>
+        <div class="parent">
+            <div></div>
+        </div>
+    </div>
+
+    <div class="quick">
+        <!-- href에 특정 태그의 id를 넣으면 a태그 클릭시 -->
+        <!-- 해당 태그 상단으로 스크롤이 이동한다. -->
+        <a href="#top">↑</a>
+    </div>
+</body>
+</html>
