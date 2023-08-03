@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비디오와유튜브</title>
+</head>
+<body>
+
+    <!-- autoplay: 페이지 진입시 자동으로 재생 -->
+    <!-- controls: 영상에 마우스 올리면 제어하는 부분이 생김 -->
+    <!-- loop: 영상이 무한 반복 재생됨 -->
+    <!-- muted: 음소거 상태로 재생 -->
+    <video src="../resources/videos/skyscrapers_-_91744 (1080p).mp4" 
+        width="1000" height="600"
+        autoplay loop muted></video>
+
+    <div>
+        <iframe width="1000" height="600" src="https://www.youtube.com/embed/7ANPnTmerF8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+
+    <!-- ifram은 태그 내부에 src에 적힌 웹사이트를 보여준다. -->
+    <!-- 해킹사이트 같은걸 만들기 쉬워지는 문제 등으로 인해 -->
+    <!-- 대부분의 사이트들은 iframe에 자신들의 웹사이트가  -->
+    <!-- 동작하지 않도록 막고 있다. -->
+    <div>
+        <iframe width="1000" height="600" src="https://www.naver.com"></iframe>
+    </div>
+
+    <!-- 우리가 만드는 사이트는 별도로 iframe 사용을 -->
+    <!-- 금지하지 않으므로 정상적으로 불러와진다. -->
+    <div>
+        <iframe width="1000" height="600" src="./13_border.html" ></iframe>
+    </div>
+
+</body>
+</html>
