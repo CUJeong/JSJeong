@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이템배치</title>
+
+    <style>
+
+        .item-box{
+            width: 1000px;
+            border: 1px solid;
+            display: flex;
+            flex-wrap: wrap;
+            /* space-between: 양끝에 여백 없이 동일한 간격으로 쪼갬 */
+            /* space-around: 동일한 간격으로 쪼개고, 양 끝 여백은 간격의 절반만큼 부여 */
+            /* space-evenly: 동일한 간격으로 쪼개고, 양 끝 여백도 간격과 동일 */
+            justify-content: space-evenly;
+        }
+
+        .item-box > div{
+            width: calc(1000px / 3 - 20px);
+            height: 400px;
+            border: 0;
+            box-shadow: 1px 1px 4px 1px skyblue;
+            border-radius: 20px;
+            overflow: hidden;
+
+            margin-bottom: 20px;
+        }
+
+        .top{
+            height: 60%;
+        }
+
+        .bottom{
+            height: 40%;
+        }
+
+        .center{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="item-box">
+        <div>
+            <div class="top center">
+                <img height="100%" src="https://web54.pro/wp-content/uploads/2023/02/switch1-1000x600.png" alt="">
+            </div>
+            <div class="bottom center">
+                <p>팝니다.</p>
+            </div>
+        </div>
+        <div>
+            <div class="top center">
+                <img height="100%" src="https://web54.pro/wp-content/uploads/2023/02/switch1-1000x600.png" alt="">
+            </div>
+            <div class="bottom center">
+                <p>팝니다.</p>
+            </div>
+        </div>
+        <div>
+            <div class="top center">
+                <img height="100%" src="https://web54.pro/wp-content/uploads/2023/02/switch1-1000x600.png" alt="">
+            </div>
+            <div class="bottom center">
+                <p>팝니다.</p>
+            </div>
+        </div>
+        <div>
+            <div class="top center">
+                <img height="100%" src="https://web54.pro/wp-content/uploads/2023/02/switch1-1000x600.png" alt="">
+            </div>
+            <div class="bottom center">
+                <p>팝니다.</p>
+            </div>
+        </div>
+        <div>
+            <div class="top center">
+                <img height="100%" src="https://web54.pro/wp-content/uploads/2023/02/switch1-1000x600.png" alt="">
+            </div>
+            <div class="bottom center">
+                <p>팝니다.</p>
+            </div>
+        </div>
+        <div>
+            <div class="top center">
+                <img height="100%" src="https://web54.pro/wp-content/uploads/2023/02/switch1-1000x600.png" alt="">
+            </div>
+            <div class="bottom center">
+                <p>팝니다.</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
