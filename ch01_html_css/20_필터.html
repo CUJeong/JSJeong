@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>필터</title>
+
+    <style>
+        img{
+            width: 400px;
+        }
+
+        .f-blur{
+            /* 뿌옇게 만든다. */
+            filter: blur(5px);
+        }
+
+        .f-contrast{
+            filter: contrast(150%);
+        }
+
+        .f-grayscale{
+            /* 흑백으로 만든다. 100%면 완전 흑백 */
+            filter: grayscale(70%);
+        }
+
+        .f-brightness{
+            /* 밝기 설정, 낮을수록 어두워짐 */
+            filter: brightness(50%);
+        }
+
+        .f-custom{
+            /* 한번에 여러개의 필터를 적용시킬 수 있다. */
+            filter: brightness(50%) contrast(200%); 
+        }
+
+        .item-box{
+            width: 1300px;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .item-box > img:hover{
+            filter: blur(0px) brightness(150%);
+        }
+
+        .btn{
+            background-color: orange;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: inline-block;
+            /* 해당 div는 inline으로 하면서 */
+            /* div 내부 요소를 flex로 정렬하고자 할때 */
+            display: inline-flex;
+            cursor: pointer;
+            /* 드래그 방지 4총사 */
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
+        }
+
+        .btn:hover{
+            /* background-color: rgb(221, 144, 0); */
+            /* 이미지 태그가 아니여도 필터 적용된다. */
+            filter: brightness(90%);
+        }
+
+        html{
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none
+        }
+
+    </style>
+
+</head>
+<body>
+    블러
+    <div>
+        <img src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+        <img class="f-blur" src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+    </div>
+    대조
+    <div>
+        <img src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+        <img class="f-contrast" src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+    </div>
+    흑백
+    <div>
+        <img src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+        <img class="f-grayscale" src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+    </div>
+    밝기
+    <div>
+        <img src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+        <img class="f-brightness" src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+    </div>
+    <div>
+        <img src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+        <img class="f-custom" src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+    </div>
+
+    <div class="item-box">
+        <img class="f-blur" src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+        <img class="f-blur" src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+        <img class="f-blur" src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+        <img class="f-blur" src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+        <img class="f-blur" src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+        <img class="f-blur" src="https://t1.daumcdn.net/movie/b05fec37909f3c46d8ada73ba1d2bc2f8868e869" alt="">
+    </div>
+    <div class="btn">로그인/회원가입</div>
+
+</body>
+</html>
