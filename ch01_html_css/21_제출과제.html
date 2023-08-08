@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>넥도날드</title>
+
+    <style>
+        div{
+            border: 1px solid transparent;
+        }
+
+        body{
+            background-color: black;
+        }
+
+        .container{
+            width: 1000px;
+            margin: auto;
+            background-color: black;
+            padding-top: 80px;
+        }
+
+        .nav-bar{
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            position: fixed;
+            top: 0;
+            width: 1000px;
+            background-color: black;
+        }
+
+        .nav-bar > div:nth-child(1){
+            font-size: 30px;
+            font-weight: bold;
+            color: orange;
+        }
+
+        .nav-bar a{
+            text-decoration: none;
+            color: white;
+            margin: 10px;
+        }
+
+        .nav-bar > div:nth-child(3){
+            background-color: orange;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 12px;
+            padding-right: 12px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .nav-bar > div:nth-child(3):hover{
+            filter: brightness(95%);
+        }
+
+        .header{
+            display: flex;
+            height: 400px;
+        }
+
+        .header > div:nth-child(1){
+            width: 50%;
+            display: flex;
+            align-items: center;
+        }
+
+        .header > div:nth-child(2){
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header p {
+            color: white;
+            width: 75%;
+            /* 줄 높이 */
+            line-height: 40px;
+        }
+
+        .content{
+            background-color: white;
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+
+        .content h3{
+            color: orange;
+            text-align: center;
+        }
+
+        .item{
+            width: calc(100%/3 - 20px);
+            height: 200px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 4px 2px gainsboro;
+            margin-bottom: 20px;
+        }
+
+        .item > div:nth-child(1){
+            height: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .item > div:nth-child(2){
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .item p{
+            margin: 10px;
+        }
+
+        .content > div:nth-child(2){
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .footer{
+            height: 300px;
+            background-color: #121227;
+            display: flex;
+        }
+
+        .footer > div:nth-child(1){
+            width: 50%;
+            padding: 20px;
+        }
+
+        .footer > div:nth-child(1) > div{
+            width: 100%;
+            height: 100%;
+        }
+
+        .footer > div:nth-child(2){
+            width: 50%;
+            padding: 20px;
+        }
+
+        .footer > div:nth-child(2) > p:nth-child(1){
+            color: white;
+            font-size: 25px;
+        }
+
+        .footer > div:nth-child(2) > p:nth-child(2){
+            color: white;
+            font-size: 15px;
+        }
+
+        /* a태그 클릭으로 스크롤 이동시 부드럽게 이동시키기 */
+        html{
+            scroll-behavior: smooth;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <div>넥도날드</div>
+            <div>
+                <a href="#top">home</a>
+                <a href="#menu">메뉴</a>
+                <a href="#map">오시는길</a>
+            </div>
+            <div>로그인/회원가입</div>
+        </div>
+        <div class="header">
+            <div>
+                <img width="100%" src="https://on.com2us.com/wp-content/uploads/2023/01/shutterstock_1938676873-scaled.jpg" alt="">
+            </div>
+            <div>
+                <h1 style="color: orange;">빅넥 출시!!</h1>
+                <p>
+                    둘이 먹다가 하나 죽어도 아무도 모르는 그 환상의 맛... 100% 순 게 살코기에 해저 치즈, 피클, 상추, 토마토, 양파를 절대 잊지 못할 거야... 그걸 김이 모락모락 나는 참깨빵 사이에 넣어서 먹으면...
+                </p>
+            </div>
+        </div>
+        <div class="content" id="menu">
+            <div>
+                <h3>햄버거 목록</h3>
+            </div>
+            <div>
+                <div class="item">
+                    <div>
+                        <img height="90%" src="../resources/images/햄버거-removebg-preview.png" alt="">
+                    </div>
+                    <div>
+                        <p>빅넥</p>
+                        <p>4,000원</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div>
+                        <img height="90%" src="../resources/images/햄버거-removebg-preview.png" alt="">
+                    </div>
+                    <div>
+                        <p>빅넥</p>
+                        <p>4,000원</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div>
+                        <img height="90%" src="../resources/images/햄버거-removebg-preview.png" alt="">
+                    </div>
+                    <div>
+                        <p>빅넥</p>
+                        <p>4,000원</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div>
+                        <img height="90%" src="../resources/images/햄버거-removebg-preview.png" alt="">
+                    </div>
+                    <div>
+                        <p>빅넥</p>
+                        <p>4,000원</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div>
+                        <img height="90%" src="../resources/images/햄버거-removebg-preview.png" alt="">
+                    </div>
+                    <div>
+                        <p>빅넥</p>
+                        <p>4,000원</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div>
+                        <img height="90%" src="../resources/images/햄버거-removebg-preview.png" alt="">
+                    </div>
+                    <div>
+                        <p>빅넥</p>
+                        <p>4,000원</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer" id="map">
+            <div>
+                <!-- * 카카오맵 - 지도퍼가기 -->
+                <!-- 1. 지도 노드 -->
+                <div id="daumRoughmapContainer1691475115108" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+            </div>
+            <div>
+                <p>(34856) 넥스트 아이티 교육센터 대전광역시 중구 계룡로 343-12 희영빌딩 2층</p>
+                <p>Tel: 042-719-8850 Fax: 042-719-8851</p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <!--
+        2. 설치 스크립트
+        * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
+    -->
+    <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+    <!-- 3. 실행 스크립트 -->
+    <script charset="UTF-8">
+        new daum.roughmap.Lander({
+            "timestamp" : "1691475115108",
+            "key" : "2fs7w"
+        }).render();
+    </script>
+</body>
+</html>

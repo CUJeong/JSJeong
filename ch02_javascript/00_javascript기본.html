@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript기본</title>
+
+</head>
+<body>
+    
+    <!-- body태그가 닫히는 곳 위에 위치 시키는 것을 추천 -->
+    <script>
+        // 자바스크립트 주석
+        /* 멀티라인 주석 */
+        // 콘솔창에 값 출력
+        // (브라우저에서 F12를 눌러 개발자 도구 창을 열고)
+        // (console 탭 확인)
+        console.log("Hello World!!");
+
+        // 변수 선언
+        // 구식 방법
+        // 타입이랑 상관없이 선언시 앞에 var을 붙여준다.
+        var age = 20;
+
+        // 신식 방법(ES6)
+        let money = 1000;
+
+        console.log(age);
+        console.log(money);
+
+        // var은 전역변수로 선언되듯이 동작
+        // 동일한 변수명을 중복 선언해도 그냥 덮어씀
+        // 실수로 기존에 선언된 변수명을 덮어쓰는 경우가 있다.
+
+        var age = 37;
+        console.log(age);
+
+        // let은 변수의 스코프가 잘 적용이 된다.
+        // let money = 2000;  // 에러발생
+
+        // 상수 선언 (ES6)
+        const name = "호빵맨";
+        // name = "찐빵맨";  // 실행시 에러가 발생
+
+        console.log(name);
+
+        // 문자열에 변수 값 넣기
+        // 쌍따옴표 또는 작은따옴표를 써서 문자열을 표현할 수 있다.
+        console.log("이름은 " + name + '이고, 나이는 ' + age + "살 입니다.");
+
+        // ES6 버전 문자열에 변수 값 넣기
+        // 백틱(`) 문자 사용 (스프링 JSP 구문 중 EL문 ${} 과 혼용이 잘 안된다.)
+        console.log(`이름은 ${name}이고, 나이는 ${age}입니다.`);
+
+        console.log('===================================')
+
+        // 문자열(string) 메소드
+
+        // 문자열의 길이 출력
+        console.log(name.length);
+
+        // 문자열 인덱스
+        console.log(name[1]);
+
+        // 특정 문자열 교체
+        console.log(name.replace('호', '찐'));
+
+        // 원본 문자열을 바꾸지는 않는다.
+        console.log(name);
+
+        let banana = "banana";
+        // replace는 처음에 잡힌 문자만 변경해준다.
+        console.log(banana.replace("a", "e"));
+        // 전부 바꾸려면 replaceAll 사용
+        console.log(banana.replaceAll('a', 'e'));
+
+
+        // 문자열 자르기
+        // 해당 문자열의 인덱스 a부터 글자수 b만큼 자르기
+        let hamburger = "자이언트모짜렐라인더버거";
+        console.log(hamburger.substr(7, 4));
+
+        // 해당 문자열에서 특정 문자열의 인덱스를 리턴
+        console.log(hamburger.indexOf("렐"));
+        // 없는 문자는 -1 을 리턴
+        console.log(hamburger.indexOf("값"));
+        // 빈 문자열(empty)은 0 을 리턴
+        console.log(hamburger.indexOf(""));
+
+        console.log("===========================");
+
+        // 조건문
+        if(age > 14){
+            console.log('14세 이상입니다.');
+        }else{
+            console.log('14세 이하입니다.');
+        }
+
+        // 조건 안에 boolean 타입(true/false) 외에도
+        // 숫자, 문자열, 객체 등을 넣을 수 있다.
+        // 숫자가 0이면 false처럼 동작
+        // 0이 아니면 true처럼 동작
+        money = -100;
+        if(money){
+            console.log("true에 해당");
+        }else{
+            console.log("false에 해당");
+        }
+
+        // 빈 문자열의 경우 false에 해당
+        let empty = "";
+        if(empty){
+            console.log("true에 해당");
+        }else{
+            console.log("false에 해당");
+        }
+
+        // undefined 객체의 경우 false에 해당
+        console.log(option);
+        if(option){
+            console.log("true에 해당")
+        }else{
+            console.log("false에 해당");
+        }
+
+        var option = 3;
+
+        let test;
+        console.log(test);
+
+        // null값은 false로 인식함
+        let brain = null;
+        if(brain){
+            console.log("true에 해당")
+        }else{
+            console.log("false에 해당");
+        }
+        // 논리연산자도 지원한다.
+        if(20 < age && age < 40){
+            console.log("청년");
+        }
+
+        let phone = "01073987332";
+        if(phone.length == 11 || phone.length == 10){
+            console.log("정상적인 휴대폰 번호")
+        }
+
+        console.log("================================");
+
+        // 숫자를 문자열로 바꾸기
+        let price = 1200;
+        // 변수의 타입 확인
+        console.log(typeof price);  // number 출력
+
+        // 1200 -> "1200"
+        let strPrice = price + "";
+        console.log(strPrice);
+        console.log(typeof strPrice);
+
+        price = price + 10;
+        console.log(price);
+
+        strPrice = strPrice + 10;
+        console.log(strPrice);
+
+        // 숫자형 문자열을 숫자로 변환
+        let numPrice = parseInt(strPrice);
+        console.log(numPrice);
+        console.log(typeof numPrice);
+
+        numPrice = strPrice / 1;
+        console.log(numPrice);
+        console.log(typeof numPrice);
+
+        console.log("================================")
+
+        // 반복문
+        // for문
+        for(var i = 0; i < 10; i++){
+            console.log(i);
+        }
+
+        // while문
+        let j = 0;
+        while(j < 10){
+            console.log(j);
+            j++;
+        }
+
+        document.write(3);
+        document.write("구구단");
+        document.write("<h1>2 x 2 = 4</h1>");
+        document.write("<h1>2 x 3 = 6</h1>");
+
+
+
+
+    </script>
+</body>
+</html>
