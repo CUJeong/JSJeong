@@ -7,7 +7,8 @@
 
 </head>
 <body>
-    
+    <h1>구구단</h1>
+
     <!-- body태그가 닫히는 곳 위에 위치 시키는 것을 추천 -->
     <script>
         // 자바스크립트 주석
@@ -187,11 +188,26 @@
             j++;
         }
 
-        document.write(3);
-        document.write("구구단");
-        document.write("<h1>2 x 2 = 4</h1>");
-        document.write("<h1>2 x 3 = 6</h1>");
+        // 자바스크립트를 이용하여 html 코드 등을
+        // 화면에 반영시킬 수 있다.
+        // document.write() 괄호 안 내용을  현재 html 페이지에
+        // 추가한다. (거의 안쓰게 될 것..)
+        // document.write(3);
+        // document.write("구구단");
+        // document.write("<h1>2 x 2 = 4</h1>");
+        // document.write("<h1>2 x 3 = 6</h1>");
 
+        for(let i = 2; i < 10; i++){
+            for(let k = 2; k < 10; k++){
+                // 2 x 2 = 4
+                // 2 x 3 = 6
+                // 2 x 9 = 18
+                // 3 x 2 = 6
+                // 3 x 3 = 9
+                // 9 x 9 = 81
+                document.write("<h2>" + i + " x " + k + " = " + (i * k));
+            }
+        }
 
 
 
