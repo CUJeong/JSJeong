@@ -1,0 +1,8 @@
+/* style태그 내에 작성하던 CSS 코드를 작성 */
+.d-flex {
+    display: flex;
+}
+
+div{
+    border: 1px solid black;
+}

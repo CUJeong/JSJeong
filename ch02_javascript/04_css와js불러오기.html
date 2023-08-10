@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css와js불러오기</title>
+    <!-- 여러 html 파일들에서 공통적으로 사용하게 되는 -->
+    <!-- CSS 와 JavaScript 코드의 경우  -->
+    <!-- 따로 .css 파일과 .js 파일로 만들어서 -->
+    <!-- .html 파일마다 불러다 쓸 수 있다. -->
+    <link rel="stylesheet" href="../resources/css/myStyle.css">
+
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+
+    <script src="../resources/js/myJs.js"></script>
+    <script>
+        console.log(f_rgbColor());
+        console.log(v_phone);
+    </script>
+
+</body>
+</html>

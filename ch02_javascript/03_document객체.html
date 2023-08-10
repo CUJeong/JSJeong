@@ -13,9 +13,14 @@
             background-color: aqua;
             display: inline-block;
         }
+
+        .title{
+            background-color: yellow;
+        }
     </style>
 </head>
 <body>
+    <h2 class="title">색이 변한 횟수</h2>
     <p id="count">0</p>
     <div class="box"></div>
     <div class="box"></div>
@@ -26,6 +31,47 @@
     <button onclick="f_click()">클릭</button>
 
     <script>
+        let v_box = document.getElementsByClassName("box");
+
+        // 해당 클래스를 가지고 있는 태그들을 담고 있는
+        // 배열
+        console.log(v_box);
+
+        console.log(v_box.length);
+        // html 코드상 위에서부터 아래 방향으로
+        // 차례대로 배열에 담겨있다.
+        console.log(v_box[0]);
+
+        // 해당 태그에 적용된 스타일 꺼내보기
+        console.log(v_box[0].style.width);
+        // 태그.style 은 해당 태그의 style 속성(attribute)
+        // 에 접근하는 것
+        console.log(v_box[2].style.width);
+        // 스크립트에서는 background-color 나 padding-top 같은 스타일명에 대해
+        // 카멜식인 backgroundColor, paddingTop 과 같이 사용
+        console.log(v_box[2].style.backgroundColor);
+
+        // 값을 가져오지 못하더라도 값을 줄 순 있다.
+        v_box[2].style.width = "200px";     // 문자열로 스타일을 적용시킨다.
+        v_box[2].style.backgroundColor = f_rgbColor();
+
+        console.log(v_box[2].style.backgroundColor);
+
+        console.log("===========================");
+
+        // 클래스가 하나뿐인 태그 불러오기
+        let v_title = document.getElementsByClassName("title");
+
+        // 하나일지라도 배열에 담긴다.
+        console.log(v_title);
+        console.log(v_title[0]);
+
+        console.log(v_title[0].style.backgroundColor);
+
+        // CSS로 적용된 스타일 가져오기
+        let cssTitle = getComputedStyle(v_title[0]);
+        console.log(cssTitle);
+        console.log(cssTitle.backgroundColor);
 
         
         function f_click(){
@@ -41,14 +87,29 @@
             // 태그 내부 변경도 가능
             v_ptag.innerHTML = parseInt(v_ptag.innerHTML) + 1;
 
+            // 클릭시 클래스가 box인 태그들의 색이
+            // 랜덤하게 변경
+            // v_box[0].style.backgroundColor = f_rgbColor();
+            // v_box[1].style.backgroundColor = f_rgbColor();
+            // v_box[2].style.backgroundColor = f_rgbColor();
+            // v_box[3].style.backgroundColor = f_rgbColor();
+            // v_box[4].style.backgroundColor = f_rgbColor();
+            // for문을 이용하여 모든 box에 색 변경
+            for(let i = 0; i < v_box.length; i++){
+                v_box[i].style.backgroundColor = f_rgbColor();
+            }
+
+
         }
 
 
 
         function f_rgbColor(){
+            let red = Math.floor(Math.random() * 256);
+            let blue = Math.floor(Math.random() * 256);
+            let green = Math.floor(Math.random() * 256);
 
-
-
+            return "rgb("+red+", "+blue+", "+green+")";
         }
 
         console.log(f_rgbColor());
