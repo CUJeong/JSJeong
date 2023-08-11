@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input태그</title>
+
+    <style>
+        tr > td:nth-child(1){
+            width: 120px;
+            background-color: rgb(134, 183, 255);
+        }
+
+        tr > td:nth-child(2){
+            width: 300px;
+            background-color: azure;
+        }
+
+        input[type=text], input[type=password]{
+            background-color: transparent;
+            border: 0;
+            border-bottom: 1px solid black;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h2>회원가입</h2>
+    <table>
+        <tr>
+            <td>아이디</td>
+            <td><input id="inputId" type="text" value=""></td>
+        </tr>
+        <tr>
+            <td>비밀번호</td>
+            <td><input id="inputPw" type="password"></td>
+        </tr>
+        <tr>
+            <td>비밀번호 재입력</td>
+            <td><input id="rePw" type="password"></td>
+        </tr>
+        <tr>
+            <td>성별</td>
+            <td>
+                남성<input type="radio" name="gender" value="male" checked>
+                여성<input type="radio" name="gender" value="female">
+            </td>
+        </tr>
+        <tr>
+            <td>비밀번호 힌트</td>
+            <td>
+                <select name="" id="hint">
+                    <option value="school">나의 초등학교 이름은?</option>
+                    <option value="nickname">나의 어릴적 별명은?</option>
+                    <option value="treasure">내 보물 1호는?</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>사이트 방문 사유</td>
+            <td>
+                지인<input type="checkbox" value="friend" name="reason">
+                직장<input type="checkbox" value="job" name="reason">
+                검색<input type="checkbox" value="search" name="reason">
+                기타<input type="checkbox" value="etc" name="reason">
+            </td>
+        </tr>
+        <tr>
+            <td>생년월일</td>
+            <td><input id="inputDate" type="date"></td>
+        </tr>
+        <tr>
+            <td>좋아하는 색</td>
+            <td><input id="inputColor" type="color"></td>
+        </tr>
+    </table>
+    <button onclick="f_regist()">회원가입</button>
+
+    <h2 id="result"></h2>
+
+
+    <script>
+        const v_id = document.getElementById("inputId");
+        const v_pw = document.getElementById("inputPw");
+        const v_gender = document.getElementsByName("gender");
+        const v_hint = document.getElementById("hint");
+        const v_reason = document.getElementsByName("reason");
+        const v_date = document.getElementById("inputDate");
+        const v_color = document.getElementById("inputColor");
+        const v_repw = document.getElementById("rePw");
+        const v_result = document.getElementById("result");
+
+        function f_regist(){
+            console.log(v_id.value);
+            console.log(v_pw.value);
+
+            // name으로 태그를 검색하면 배열로 가지고 온다.
+            console.log(v_gender);
+            // 선택한 radio 버튼이 무엇인지 확인
+            console.log(v_gender[0].checked);
+            console.log(v_gender[1].checked);
+
+            let genderChecked = '';
+            for(let i = 0; i < v_gender.length; i++){
+                if(v_gender[i].checked){
+                    // 체크되어있는 input:radio
+                    console.log(v_gender[i].value);
+                    genderChecked = v_gender[i].value;
+                }
+            }
+
+            // select 박스에 선택된 option의 value 확인
+            console.log(v_hint.value);
+
+            // checkbox 에 체크한 input 태그의 value 확인
+            let reasonChecked = [];
+            for(let i = 0; i < v_reason.length; i++){
+                if(v_reason[i].checked){
+                    console.log(v_reason[i].value);
+                    reasonChecked.push(v_reason[i].value);
+                }
+            }
+
+            console.log(reasonChecked);
+
+            console.log(v_date.value);
+
+            console.log(v_color.value);
+
+            if(v_pw.value == v_repw.value){
+                console.log('비밀번호 통과');
+            }else{
+                console.log('비밀번호 탈락');
+            }
+
+            v_result.innerHTML = "아이디는 " + v_id.value;
+            v_result.innerHTML += "<br>비밀번호는 " + v_pw.value;
+            v_result.innerHTML += "<br>성별은 " + f_cgGender(genderChecked);
+        }
+
+
+        function f_cgGender(p_gender){
+            if(p_gender == 'male'){
+                return '남성';
+            }else if(p_gender == 'female'){
+                return '여성';
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>

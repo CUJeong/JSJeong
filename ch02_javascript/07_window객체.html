@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window객체</title>
+
+    <script>
+
+        // document 객체가 사용가능해지는 시점에 실행
+        // img태그의 src 리소스 등이 완전히 로드되기 전에
+        // 실행될 수 있음
+        document.addEventListener("DOMContentLoaded", function(){
+            // const v_box = document.getElementById("box");
+            // v_box.style.width = "100px"
+            // v_box.style.height = "100px";
+            // v_box.style.border = "1px solid black";
+        });
+
+        // 현재 문서(html)가 전부 읽어진 후 실행
+        // document ready 보다 늦게 실행됨
+        window.onload = function(){
+            const v_box = document.getElementById("box");
+            v_box.style.width = "100px"
+            v_box.style.height = "100px";
+            v_box.style.border = "1px solid black";
+        };
+
+        let temp = "임시";
+    </script>
+</head>
+<body>
+    
+    <div id="box"></div>
+
+    <script>
+        // script 태그는 분리되어 여러개 존재해도
+        // 하나의 script 태그와 같다.
+        console.log(temp);
+
+        // window 객체는 현재 브라우저 창에 대한 객체
+        window.console.log('난 window 객체 소속이였어..');
+
+        // 웹 페이지의 라이프 사이클
+        // 1. DOMContentLoaded
+        // 2. window.onload
+        // 3. 사이트 이용
+        // 4. window.onbeforeunload
+        // 5. window.unload
+
+        window.onbeforeunload = function(){
+            // 뭐라고 적든 고정된 문구가 출력된다.
+            // 사용자의 불편함, 불쾌함 최소화
+            return "진짜 갈꺼야?";
+        };
+
+        window.unload = function(){
+            // 실행을 막아놓은 기능들이 많다.
+            // 현재 상황(데이터)을 저장하는 기능을 넣는 편
+            alert("가지마!!!");
+        }
+
+        // 재미로 보는 안드로이드(어플) 라이프 사이클
+        // 1. onCreate : 앱 실행 시 최초 실행
+        // 2. onStart : onCreate 직후 실행
+        // 3. onResume : 현재 앱이 메인이 될때 실행
+        // 4. 앱 이용
+        // 5. onPause : onStop 직전 실행
+        // 6. onStop : 앱이 백그라운드로 넘어갈때 실행
+        // 7. onDestory : 앱 완전히 종료될때 실행
+
+
+
+    </script>
+</body>
+</html>

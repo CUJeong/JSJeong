@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클릭및페이지이동</title>
+
+    <link rel="stylesheet" href="../resources/css/myStyle.css">
+
+    <style>
+        .d-flex div{
+            width: 100px;
+            cursor: pointer;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="d-flex">
+        <div onclick="f_naver()">네이버</div>
+        <div id="google">구글</div>
+        <div id="daum">다음</div>
+        <a href="https://www.youtube.com">
+            <div>유튜브</div>
+        </a>
+        <div id="overflow">오버플로우</div>
+
+    </div>
+
+    <script>
+        function f_naver(){
+            // 새창 열기 (별도 옵션을 주지 않으면 새탭에서 열림)
+            // a태그의 target="_blank"
+            window.open("https://www.naver.com");
+        }
+
+        let v_google = document.getElementById("google");
+        // 클릭 이벤트 부여 1
+        // 해당 태그에 onclick 속성(attribute)이 존재해야함
+        v_google.onclick = function(){
+            // window.location.href = "https://www.google.com";
+            // 앞에 window는 생략 가능
+            location.href = "https://www.google.com";
+        };
+
+        let v_daum = document.getElementById("daum");
+        // 클릭 이벤트 부여 2
+        document.getElementById("daum").addEventListener("click", function(){
+            window.location.replace("https://www.daum.net");
+        });
+
+
+        document.getElementById("overflow")
+                .addEventListener("click", ()=>{
+                    location.href = "../ch01_html_css/17_overflow.html";
+                });
+
+    </script>
+
+</body>
+</html>
