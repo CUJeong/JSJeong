@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배너만들기</title>
+
+    <style>
+        .box{
+            width: 400px;
+            height: 60px;
+            position: relative;
+        }
+
+        .banner{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img class="banner" src="https://blog.rocketpunch.com/wp-content/uploads/2020/04/%EA%B8%B0%EC%97%85%EA%B4%91%EA%B3%A0%EB%B0%B0%EB%84%88-scaled.jpg" alt="">
+        <img class="banner" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfuTfoM9pAhkE71Xb5brQ07Fc-DXUTgwg1Jw&usqp=CAU" alt="">
+        <img class="banner" src="https://yozm.wishket.com/media/news/1587/%EC%9C%84%EC%8B%9C%EC%BC%93_%EC%A0%84%ED%99%98_%EB%B0%B0%EB%84%88.png" alt="">
+    </div>
+
+    <script>
+        const v_banner = document.getElementsByClassName("banner");
+
+        for(let i = 0; i < v_banner.length; i++){
+            v_banner[i].style.zIndex = i;
+        }
+
+        function f_cgIndex(){
+            // v_banner[i]의 z-index가 0이면 1로
+            // 1이면 2로, 2이면 0로 바꾸기
+            for(let i = 0; i < v_banner.length; i++){
+                v_banner[i].style.zIndex = (v_banner[i].style.zIndex + 1) % 3;
+            }
+
+            setTimeout(f_cgIndex, 10000);
+        }
+
+        f_cgIndex();
+
+
+
+    </script>
+</body>
+</html>

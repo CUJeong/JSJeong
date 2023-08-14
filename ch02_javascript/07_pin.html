@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIN번호</title>
+
+    <style>
+        .container{
+            width: 400px;
+            height: 600px;
+        }
+
+        .container > div:nth-child(1){
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input[type=password]{
+            border: 0;
+            font-size: 60px;
+            text-align: center;
+            background-color: white;
+        }
+
+        .container > div:nth-child(2){
+            height: 60%;
+            background-color: #2DB400;
+
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .number > div{
+            width: calc(100%/3);
+            height: calc(100%/4);
+
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            cursor: pointer;
+        }        
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h2>비밀번호 입력</h2>
+            <input id="inputPin" type="password" disabled>
+        </div>
+        <div class="number">
+            <div class="btn">1</div>
+            <div class="btn">2</div>
+            <div class="btn">3</div>
+            <div class="btn">4</div>
+            <div class="btn">5</div>
+            <div class="btn">6</div>
+            <div class="btn">7</div>
+            <div class="btn">8</div>
+            <div class="btn">9</div>
+            <div class="btn">취소</div>
+            <div class="btn">0</div>
+            <div class="btn">초기화</div>
+        </div>
+    </div>
+
+    <script>
+        const v_pin = document.getElementById("inputPin");
+        const v_btn = document.getElementsByClassName("btn");
+
+        // 각 버튼에 클릭 이벤트 추가
+        for(let i = 0; i < v_btn.length; i++){
+            v_btn[i].addEventListener("click", function(){
+                console.log(v_btn[i].innerHTML);
+
+                if(v_btn[i].innerHTML == '초기화'){
+                    v_pin.value = "";
+                }else if(v_btn[i].innerHTML == '취소'){
+                    // v_pin.value의 마지막 자리의 숫자가 제거
+                    v_pin.value = v_pin.value.substr(0, v_pin.value.length - 1);
+                }else{
+                    v_pin.value += v_btn[i].innerHTML;
+                }
+
+                if(v_pin.value.length == 6){
+                    f_finish();
+                }
+
+            });
+        }
+
+
+        function f_finish(){
+            // 현재 창을 연 부모 html에 접근하여
+            // 현재 pin.value를 보내기
+
+            // 부모 페이지의 특정 태그에 접근 및 제어
+            opener.document.getElementById("result").innerHTML = v_pin.value + "입력됨";
+            // 부모 페이지의 함수 실행
+            opener.f_check(v_pin.value);
+
+            // 현재 창 닫기
+            window.close();
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타이머만들기</title>
+</head>
+<body>
+    <div id="clock"></div>
+
+    <script>
+        const v_clock = document.getElementById("clock");
+
+        function f_showTime(){
+            let v_date = new Date();
+
+            console.log("시 : " + v_date.getHours());
+            console.log("분 : " + v_date.getMinutes());
+            console.log("초 : " + v_date.getSeconds());
+
+            // 시, 분, 초가 한자리수면 앞에 0을 붙여주기
+            // 5초 -> 05초
+
+            v_clock.innerHTML = v_date.getHours() + ":" + v_date.getMinutes() + ":" + v_date.getSeconds();
+
+            setTimeout(f_showTime, 1000);
+        }
+
+        f_showTime();
+
+    </script>
+</body>
+</html>

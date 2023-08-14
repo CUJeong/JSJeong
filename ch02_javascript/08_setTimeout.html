@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout</title>
+
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <span id="count">3</span>초 후 코디 정하기 게임이 시작됩니다.
+    </p>
+    <div id="cap"></div>
+    <div id="top"></div>
+    <div id="pants"></div>
+    <button onclick="f_stop()">멈춰!!</button>
+
+    <script src="../resources/js/myJs.js"></script>
+    <script>
+        // setTimeout 함수는 자바스크립트의 대표적인 비동기 함수
+        // 자바의 멀티 스레드처럼 외부 스레드에 일을 시킬 수 있다.
+
+        // 함수를 몇 초 후에 실행 시킬 수 있다.
+        let v_timer;
+        function f_cgColor(){
+            document.getElementById("cap").style.backgroundColor = f_rgbColor();
+            document.getElementById("top").style.backgroundColor = f_rgbColor();
+            document.getElementById("pants").style.backgroundColor = f_rgbColor();
+            
+            // setTimeout의 스케줄 객체가 담긴다.
+            v_timer = setTimeout(f_cgColor, 20);
+        }
+
+        // 3초후 f_cgColor 함수를 실행
+        setTimeout(f_cgColor, 3000);  // 3000 ms 후 실행
+
+        const v_count = document.getElementById("count");
+
+        function f_counting(){
+            let num = v_count.innerHTML - 1;
+            v_count.innerHTML = num;
+
+            // num이 0일시 현재 함수 종료
+            if(num == 0){
+                return;
+            }
+
+            // 1초 후 f_counting 실행
+            setTimeout(f_counting, 1000);
+        }
+        
+        setTimeout(f_counting, 1000);
+
+        function f_stop(){
+            clearTimeout(v_timer);
+        }
+
+    </script>
+</body>
+</html>
