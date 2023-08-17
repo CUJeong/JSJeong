@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시간 게이지</title>
+
+    <style>
+        #bar{
+            width: 200px;
+            height: 30px;
+            border: 2px solid black;
+        }
+
+        #timer{
+            width: 100%;
+            height: 100%;
+            background-color: red;
+        }
+
+        .container{
+            display: flex;
+        }
+
+        img{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="count">30</div>
+        <div id="bar">
+            <div id="timer"></div>
+        </div>
+        <img onclick="f_reset()" width="30" height="30" src="https://us.123rf.com/450wm/foxroar/foxroar1606/foxroar160600253/58011679-%EC%83%88%EB%A1%9C-%EA%B3%A0%EC%B9%A8-%EC%95%84%EC%9D%B4%EC%BD%98-%ED%8C%8C%EB%9E%80%EC%83%89%EA%B3%BC-%EC%A3%BC%ED%99%A9%EC%83%89.jpg?ver=6" alt="">
+    </div>
+
+    <script>
+        const v_count = document.getElementById("count");
+        const v_timer = document.getElementById("timer");
+
+        let cnt = parseInt(v_count.innerHTML);
+        function f_time(){
+            cnt--;
+            v_count.innerHTML = cnt;
+
+            let ratio = cnt/30 * 100;
+            v_timer.style.width = ratio + "%";
+
+            if(cnt == 0){
+                return;
+            }
+
+            setTimeout(f_time, 1000);
+        }
+
+        setTimeout(f_time, 1000);
+
+        function f_reset(){
+            cnt = 30;
+            v_count.innerHTML = cnt;
+            v_timer.style.width = "100%";
+        }
+
+    </script>
+</body>
+</html>

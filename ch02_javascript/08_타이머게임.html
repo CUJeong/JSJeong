@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타이머게임</title>
+
+    <style>
+        .container{
+            width: 400px;
+            height: 400px;
+
+            border: 1px solid black;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container" onclick="f_click()">
+        <h1 id="count">0</h1>
+    </div>
+
+    <script>
+        const v_count = document.getElementById("count");
+
+        let correctTime;
+        let clickTime;
+
+        let v_sec = 0;
+        function f_count(){
+            // 5초 이후로는 카운트를 안보여줄거다 (? 를 표기)
+            v_sec++;
+            
+            if(v_sec < 6){
+                // 화면에 숫자 카운트
+                v_count.innerHTML = parseInt(v_count.innerHTML) + 1;
+            }else{
+                v_count.innerHTML = "?";
+            }
+
+            // 15초가 흐른 시점의 시간 얻기
+            if(v_sec == 15){
+                correctTime = new Date();
+            }
+
+            // 18초가 흐른 후 두 시간의 차이를 계산 후
+            // 결과 보여주고, 반복 종료
+            if(v_sec == 18){
+                // 자바스크립트에서는 Date 객체간 연산이 된다.
+                let v_diff = clickTime - correctTime;
+                // 두 Date 객체간 밀리초 차이
+                console.log(v_diff);
+
+                v_count.innerHTML = (v_diff/1000) + "초 차이";
+                return;
+            }
+
+            setTimeout(f_count, 1000);
+        }
+
+        setTimeout(f_count, 1000);
+
+        function f_click(){
+            // 클릭한 시점의 시간 얻기
+            clickTime = new Date();
+
+            document.getElementsByClassName("container")[0].style.backgroundColor = "greenYellow";
+        }
+
+    </script>
+</body>
+</html>

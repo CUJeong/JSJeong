@@ -7,6 +7,7 @@
 </head>
 <body>
     <div id="clock"></div>
+    <button onclick="f_stop()">정지</button>
 
     <script>
         const v_clock = document.getElementById("clock");
@@ -14,19 +15,40 @@
         function f_showTime(){
             let v_date = new Date();
 
+            console.log("년 : " + v_date.getFullYear());
+            console.log("월 : " + (v_date.getMonth() + 1)); // 1월이면 0, 8월이면 7
+            console.log("일 : " + v_date.getDate());
+            console.log("요일 : " + v_date.getDay()); // 일요일 0, 월요일 1, .., 토요일 6
             console.log("시 : " + v_date.getHours());
             console.log("분 : " + v_date.getMinutes());
             console.log("초 : " + v_date.getSeconds());
 
             // 시, 분, 초가 한자리수면 앞에 0을 붙여주기
             // 5초 -> 05초
+            let v_hour = v_date.getHours();
+            if(v_hour < 10){
+                v_hour = "0" + v_hour;
+            }
 
-            v_clock.innerHTML = v_date.getHours() + ":" + v_date.getMinutes() + ":" + v_date.getSeconds();
+            let v_min = v_date.getMinutes() < 10 
+                    ? "0" + v_date.getMinutes() : v_date.getMinutes();
 
-            setTimeout(f_showTime, 1000);
+            let v_sec = v_date.getSeconds();
+            if(v_sec < 10) v_sec = "0" + v_sec;
+
+            v_clock.innerHTML = v_hour + ":" + v_min + ":" + v_sec;
+
+            // setTimeout(f_showTime, 1000);
         }
 
-        f_showTime();
+        // f_showTime();
+
+        // setInterval은 괄호 안 함수를 1초 간격으로 무한 반복 실행시킨다.
+        let v_timer = setInterval(f_showTime, 1000);
+
+        function f_stop(){
+            clearInterval(v_timer);
+        }
 
     </script>
 </body>
