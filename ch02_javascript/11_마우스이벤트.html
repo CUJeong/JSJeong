@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마우스이벤트</title>
+
+    <style>
+        .container{
+            width: 500px;
+            height: 500px;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
+            border: 2px solid black;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+        #myImg{
+            /* 이미지 태그를 움직이게 하기 위함 */
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- onmousewheel: 현재 태그에 마우스 커서가 
+            놓여있는 상태로 마우스 휠을 굴렸을때 
+            실행되는 이벤트 -->
+        <!-- onmouseover: 현재 태그 위에 마우스 커서가 놓이면 실행 -->
+        <!-- onmousedown: 마우스 버튼을 누르면 실행 -->
+        <!-- onmouseup: 누른 버튼에 손을 떼면 실행 -->
+        <!-- onclick: 마우스 버튼을 누르고 떼면 실행 -->
+        <!-- onmousemove: 마우스 커서가 움직이면 실행 -->
+        <!-- onmouseout: 마우스 커서가 벗어나면 실행 -->
+        <!-- draggable=true면 이미지 드래그 허용 -->
+        <img id="myImg" onmousewheel="f_wheel()" onmouseover="f_over()"
+            onmousedown="f_down()" onmouseup="f_up()"
+            onmousemove="f_move()" onmouseout="f_out()" draggable="false"
+            height="800px" src="https://img1.daumcdn.net/thumb/C300x430/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fce3dda655bc0eb73ffd6e82ba32e1bc6322b173a" alt="">
+    </div>
+
+    <script>
+        const v_img = document.getElementById("myImg");
+
+        // 휠을 굴리면 이미지의 크기 변경
+        function f_wheel(){
+            // 휠을 올리면 이미지가 커지고,
+            // 휠을 내리면 이미지가 작아지게
+
+            // event 함수의 경우 함수 내부에서
+            // event 객체를 이용하여 현재 이벤트의
+            // 상황이나 이벤트의 대상이 되는 태그에
+            // 접근할 수 있다.
+            console.log(event.target);
+            // 휠을 올리면 음수, 내리면 양수
+            console.log(event.deltaY);
+
+            if(event.deltaY < 0){
+                v_img.height += 20;
+            }else{
+                // 작아지는 크기의 최소값 설정
+                if(event.target.height <= 100){
+                    return;
+                }
+                event.target.height -= 20;
+            }
+        }
+
+
+        function f_over(){
+            // 이미지 위에 마우스를 올리면
+            // 마우스의 커서를 변경
+            event.target.style.cursor = "grab";
+        }
+
+        function f_move(){
+            // 이미지를 누른 시점의 마우스 커서 위치와
+            // 이동중인 마우스 커서 위치와의 차이 계산
+            let diffX = event.clientX - x;
+            let diffY = event.clientY - y;
+
+            if(v_isDown == false){
+                return;
+            }
+
+            // 마우스 커서를 움직이면 이미지도 움직이게
+            // 이벤트 실행 당시의 마우스 커서의 위치
+            console.log("x: " + event.clientX);
+            console.log("y: " + event.clientY);
+
+            if(!event.target.style.top){
+                event.target.style.top = "0px";
+                event.target.style.left = "0px";
+            }
+
+            // 현재 이미지의 top, left값
+            // parseInt: "10" -> 10, "10.22" -> 10
+            // parseFloat: "10.22" -> 10.22
+            let v_top = parseFloat(event.target.style.top);
+            let v_left = parseFloat(event.target.style.left);
+
+            event.target.style.top = v_top + diffY + "px";
+            event.target.style.left = v_left + diffX + "px";
+
+            // 현재 이동중인 마우스 커서의 위치를
+            // x, y에 덮어씌워 다음 실행시 계산에 사용되게끔함
+            x = event.clientX;
+            y = event.clientY;
+        }
+
+        let v_isDown = false;
+        let x = 0;
+        let y = 0;
+        function f_down(){
+            // 마우스 클릭을 해야만 f_move가 실행되도록 함
+            v_isDown = true;
+
+            event.target.style.cursor = "grabbing";
+
+            // 누른 시점의 마우스 커서 좌표 저장
+            x = event.clientX;
+            y = event.clientY;
+        }
+
+        function f_up(){
+            v_isDown = false;
+
+            event.target.style.cursor = "grab";
+        }
+
+        function f_out(){
+            v_isDown = false;
+        }
+
+    </script>
+</body>
+</html>
