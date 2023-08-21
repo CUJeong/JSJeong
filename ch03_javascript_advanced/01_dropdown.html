@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DropDown</title>
+
+    <style>
+        .container{
+            width: 800px;
+            height: 400px;
+            margin: auto;
+            border: 1px solid black;
+        }
+
+        .nav-bar{
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: beige;
+        }
+
+        .nav-bar a{
+            text-decoration: none;
+            color: black;
+            margin: 10px;
+        }
+
+        .nav-bar > div{
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown{
+            position: relative;
+        }
+
+        .drop-content{
+            position: absolute;
+            top: 100%;
+            background-color: white;
+            box-shadow: 2px 2px 4px 0px gainsboro;
+            width: 100px;
+
+            display: flex;
+            flex-direction: column;
+
+            visibility: hidden;
+        }
+
+        .dropdown:hover .drop-content{
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <div>
+                <img height="40px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Naver_Logotype.svg/2560px-Naver_Logotype.svg.png" alt="">
+            </div>
+            <div>
+                <a href="">회사소개</a>
+                <a href="">오시는길</a>
+                <div class="dropdown">
+                    <a class="dropbtn" href="">찬웅쌤님▼</a>
+                    <div class="drop-content">
+                        <a href="">프로필 수정</a>
+                        <a href="">로그아웃</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

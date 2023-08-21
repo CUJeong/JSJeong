@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>넓은드롭다운</title>
+
+    <style>
+       
+
+        .container{
+            width: 600px;
+            height: 600px;
+            border: 1px solid black;
+            margin: auto;
+            background-color: cornflowerblue;
+        }
+
+        .nav-bar{
+            background-color: beige;
+            height: 60px;
+            position: relative;
+        }
+
+        .nav-bar:hover .drop-content{
+            visibility: visible;
+        }
+
+        .nav{
+            height: 100%;
+            display: flex;
+        }
+
+        .nav > div{
+            width: calc(100%/5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .drop-content{
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            background-color: #ffffffaa;
+            visibility: hidden;
+        }
+
+        .drop-content > div{
+            width: calc(100%/5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <img height="40px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Naver_Logotype.svg/2560px-Naver_Logotype.svg.png" alt="">
+        </div>
+        <div class="nav-bar">
+            <div class="nav">
+                <div>교육과정</div>
+                <div>학원소개</div>
+                <div>수강신청</div>
+                <div>취업지원</div>
+                <div>커뮤니티</div>
+            </div>
+
+            <div class="drop-content">
+                <div>
+                    <a href="">국비과정</a>
+                    <a href="">재직자과정</a>
+                    <a href="">k디지털</a>
+                    <a href="">산대특</a>
+                </div>
+                <div>
+                    <a href="">연혁</a>
+                    <a href="">교육내용</a>
+                    <a href="">직원</a>
+                </div>
+                <div>
+                    <a href="">내일배움카드</a>
+                    <a href="">국민취업제도</a>
+                </div>
+                <div>
+                    <a href="">연계기업</a>
+                    <a href="">구인중인 기업</a>
+                </div>
+                <div>
+                    <a href="">자유게시판</a>
+                    <a href="">수료식</a>
+                    <a href="">갤러리</a>
+                    <a href="">프로젝트</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무한스크롤</title>
+
+    <style>
+        .container {
+            width: 400px;
+            border: 1px solid black;
+            margin: auto;
+        }
+
+        .feed {
+            height: 300px;
+            border-radius: 30px;
+            box-shadow: 0px 0px 8px 0px gainsboro;
+            margin: 10px;
+        }
+
+        .feed>div:nth-child(1) {
+            height: 80%;
+            text-align: center;
+        }
+
+        .feed>div:nth-child(2) {
+            height: 20%;
+        }
+
+        .feed img {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="feed">
+            <div>
+                <img height="100%"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Golde33443.jpg/280px-Golde33443.jpg"
+                    alt="">
+            </div>
+            <div>
+                <h2>시고르자브종 한컷~^^</h2>
+            </div>
+        </div>
+
+        <div class="feed">
+            <div>
+                <img height="100%"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Golde33443.jpg/280px-Golde33443.jpg"
+                    alt="">
+            </div>
+            <div>
+                <h2>시고르자브종 한컷~^^</h2>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const v_container = document.getElementsByClassName("container")[0];
+
+        // feed 요소를 문자열로 생성해서 
+        // container에 5개 추가하기
+        let v_str = "<div class='feed'><div><img height='100%' src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Golde33443.jpg/280px-Golde33443.jpg' alt=''></div><div><h2>시고르자브종 한컷~^^</h2></div></div>";
+        v_container.innerHTML += v_str;
+
+        v_str = '<div class="feed"><div><img height="100%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Golde33443.jpg/280px-Golde33443.jpg" alt=""></div><div><h2>시고르자브종 한컷~^^</h2></div></div>';
+        v_container.innerHTML += v_str;
+
+        v_str = '<div class="feed"><div>';
+        v_str += '<img height="100%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Golde33443.jpg/280px-Golde33443.jpg" alt="">';
+        v_str += '</div><div><h2>시고르자브종 한컷~^^</h2></div></div>';
+        v_container.innerHTML += v_str;
+
+        for (let i = 0; i < 5; i++) {
+            v_container.innerHTML += v_str;
+        }
+
+        // createElement로 5개 생성
+        for (let i = 0; i < 5; i++) {
+            // createElement가 매번 실행이 되어야
+            // 새롭게 추가가 된다.
+            let v_div = document.createElement("div");
+            v_div.classList.add("feed");
+
+            let v_top = document.createElement("div");
+
+            let v_img = document.createElement("img");
+            v_img.src = "https://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg";
+
+            v_top.appendChild(v_img);
+            v_div.appendChild(v_top);
+
+            let v_bottom = document.createElement("div");
+            let v_h2 = document.createElement("h2");
+            v_h2.innerHTML = "화난 시고르자브종";
+
+            v_bottom.appendChild(v_h2);
+            v_div.appendChild(v_bottom);
+
+            v_container.appendChild(v_div);
+        }
+
+        // 무한스크롤 구현
+        // 스크롤 이벤트 추가
+        window.onscroll = function(){
+            // 전체 문서의 높이
+            console.log(document.documentElement.scrollHeight);
+            // 사용자의 브라우저 창의 높이
+            console.log(document.documentElement.clientHeight);
+            // 스크롤바의 위치
+            console.log(document.documentElement.scrollTop); 
+
+            let v_scrollHeight = document.documentElement.scrollHeight;
+            let v_clientHeight = document.documentElement.clientHeight;
+            let v_scrollTop = document.documentElement.scrollTop;
+
+            // 스크롤바를 끝까지 내리면
+            // scrollHeight = clientHeight + scrollTop 이 성립한다.
+            // 스크롤이 거의 끝까지 와도 실행이 되게 여유 주기
+            if(v_scrollHeight - 600 <= v_clientHeight + v_scrollTop){
+                for(let i = 0; i < 5; i++){
+                    v_container.innerHTML += v_str;
+                }
+            }
+        }
+
+        // 새로고침시 스크롤이 맨 위로 올라가길 바란다면
+        // 페이지를 떠나기전 스크롤을 맨 위로 올려서
+        // 스크롤의 위치 기록을 맨 위로 바꿔버리기
+        window.addEventListener("unload", function(){
+            window.scrollTo(0,0);
+        });
+        
+
+    </script>
+
+</body>
+
+</html>
