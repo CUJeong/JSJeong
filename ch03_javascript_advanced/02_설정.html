@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설정</title>
+
+    <style>
+        .container{
+            width: 600px;
+            height: 400px;
+            border: 1px solid black;
+            margin: auto;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div>
+            해상도
+            <select id="resolution">
+                <option value="1024x768">1024x768</option>
+                <option value="1280x800">1280x800</option>
+                <option value="1920x1200" selected>1920x1200</option>
+            </select>
+        </div>
+        <div>
+            볼륨
+            <input id="inputRange" type="range" min="0" max="100" value="100" oninput="f_volume()">
+            <input id="inputNum" type="number" value="100">
+        </div>
+        <div>
+            <input type="button" value="확인" onclick="f_confirm()">
+            <input type="button" value="초기화" onclick="f_init()">
+        </div>
+
+    </div>
+
+    <script>
+        const v_num = document.getElementById("inputNum");
+        const v_resolution = document.getElementById("resolution");
+        const v_range = document.getElementById("inputRange");
+
+        let v_setting = JSON.parse(localStorage.getItem("setting"));
+        console.log(v_setting);
+        
+        if(v_setting != null){
+            v_resolution.value = v_setting["resolution"];
+            v_num.value = v_setting["volume"];
+            v_range.value = v_setting["volume"];
+        }
+
+        function f_volume(){
+            // console.log(event.target);
+            // console.log(event.target.value);
+            v_num.value = event.target.value;
+        }
+
+        function f_confirm(){
+            // 데이터 구조 설계
+            // resolution: 1920x1200
+            // volume: 70
+            let v_json = {};
+
+            v_json["resolution"] = v_resolution.value;
+            v_json["volume"] = v_num.value;
+
+            localStorage.setItem("setting", JSON.stringify(v_json));
+        }
+
+        function f_init(){
+            localStorage.removeItem("setting");
+
+            v_range.value = 100;
+            v_num.value = 100;
+            v_resolution.value = "1920x1200";
+        }
+
+    </script>
+
+</body>
+</html>

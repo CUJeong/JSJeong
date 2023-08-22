@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>localStorage</title>
+</head>
+<body>
+    
+
+    <script>
+        // localStorage, 브라우저 내 저장공간
+        // 브라우저 F12 개발자도구 - Application 탭에서 확인
+
+        // 현재 브라우저를 기준으로 해당 웹서버 주소에 대한
+        // localStorage가 각각 존재하며, 이곳에 데이터 저장 가능
+        // 쿠키 대행으로 사용할 수 있다.
+        // 용량은 대략 5MB 정도이다.
+
+        // 사용자가 브라우저를 종료, 컴퓨터를 종료하더라도
+        // 해당 브라우저 내에 계속 저장이 되어 있다.
+
+        // 데이터 저장
+        // Key값에 대한 Value로 데이터를 저장한다.
+        // localStorage.setItem(Key, Value);
+        // 데이터 불러오기
+        // localStorage.getItem(Key);
+        // 데이터 삭제
+        // localStorage.removeItem(Key);
+        // 데이터 전부 삭제
+        // localStorage.clear();
+
+        localStorage.setItem("name", "찬웅쌤");
+        localStorage.setItem("money", 10000);
+        // 동일한 키값을 저장시, 기존 Value값을 덮어 씌운다.
+        localStorage.setItem("money", 15000);
+        // 위와 같은 역할
+        localStorage.money = 20000;
+        localStorage["money"] = 25000;
+
+        // 값 불러오기
+        let v_name = localStorage.getItem("name");
+        console.log(v_name);
+
+        let v_money = localStorage.money;
+        v_money = localStorage["money"];
+        console.log(v_money);
+        // 담을때 숫자 타입으로 담았으나 문자열로 담겼으며
+        // 꺼내올때에도 문자열로 꺼내온다.
+        console.log(typeof v_money);  // "25000"
+
+        // 현재 money값에 +1만원을 해서 저장하기
+        localStorage.setItem("money", parseInt(v_money) + 10000);
+        localStorage.setItem("money", v_money/1 + 10000);
+
+        // 저장된 값 지우기
+        localStorage.removeItem("money");
+
+        // 존재하지 않는 키값을 불러오기
+        let v_temp = localStorage.getItem("money");
+        console.log(v_temp);  // null 값이 출력
+
+        // 전부 삭제
+        localStorage.clear();
+
+        // localStorage에 JSON 객체 저장
+        let v_json = {
+            "name": "찬웅쌤",
+            "money" : 20000
+        };
+
+        // JSON 객체든, 배열 객체든 로컬스토리지에 저장할시
+        // JSON.stringify() 를 이용하여 String으로 변환 후
+        // 담아준다.
+        localStorage.setItem("data", JSON.stringify(v_json));
+
+        // JSON 객체를 String으로 변환 후 저장했기 때문에
+        // 꺼내올때에도 당연히 String이다.
+        let v_strJson = localStorage.getItem("data");
+        console.log(v_strJson);
+        // 문자열에 점찍고 키값을 입력해봤자 undefined 임
+        console.log(v_strJson.name); 
+
+        // JSON String을 JSON 객체로 변환
+        let v_strToJson = JSON.parse(v_strJson);
+        console.log(v_strToJson);
+        console.log(v_strToJson.name);
+        console.log(v_strToJson["money"]);
+        console.log(typeof v_strToJson["money"]);
+
+        // 현재 저장된 data 의 money값을 +10000 한 후
+        // 로컬스토리지에 저장 (데이터 수정)
+        v_strToJson["money"] = v_strToJson["money"] + 10000;
+        v_strToJson["money"] += 10000;
+
+        localStorage.setItem("data", JSON.stringify(v_strToJson));
+
+        // 로컬스토리지에 배열 객체 저장
+        let v_array = [1, 2, 3, 4, v_json];
+
+        // 배열 객체도 JSON.stringify()로 문자열 변환 후 저장
+        localStorage.setItem("arr", JSON.stringify(v_array));
+
+        let v_strArr = localStorage.getItem("arr");
+        console.log(v_strArr);
+        console.log(v_strArr[0]);
+
+        let v_strToArr = JSON.parse(localStorage.getItem("arr"));
+        console.log(v_strToArr);
+        console.log(v_strToArr[0]);
+        console.log(JSON.parse(localStorage.getItem("arr"))[0]);
+
+        // 키값 arr에 저장된 배열 객체 내부 JSON 객체의
+        // money 를 +5000 한 후 저장
+        v_strToArr[4]["money"] += 5000;
+        localStorage.setItem("arr", JSON.stringify(v_strToArr));
+
+
+    </script>
+</body>
+</html>
