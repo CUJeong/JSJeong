@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sessionStorage</title>
+
+    <style>
+        .container{
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <input id="inputId" type="text" placeholder="아이디">
+        <br>
+        <input id="inputPw" type="password" placeholder="비밀번호">
+        <br>
+        <button onclick="f_login()">로그인</button>
+    </div>
+
+    <script>
+        // sessionStorage, 브라우저 내 저장공간
+        // localStorage와 사용법이 거의 같다.
+        // 가장 큰 차이는 브라우저가 켜져있을때에만 유효하다는 점
+        // 웹서버가 재기동 되어도 사라진다.
+
+        // 보통 로그인 상태를 세션에 저장한다.
+        const v_id = document.getElementById("inputId");
+        const v_pw = document.getElementById("inputPw");
+        
+        function f_login(){
+            console.log(v_id.value);
+            console.log(v_pw.value);
+
+            // 로그인한 사람의 아이디를 
+            // 세션스토리지에 저장
+            sessionStorage.setItem("loginId", v_id.value);
+            location.href = "./01_dropdown.html";
+        }
+
+
+
+
+    </script>
+
+</body>
+</html>

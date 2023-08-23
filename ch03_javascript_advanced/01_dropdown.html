@@ -67,11 +67,34 @@
                     <a class="dropbtn" href="">찬웅쌤님▼</a>
                     <div class="drop-content">
                         <a href="">프로필 수정</a>
-                        <a href="">로그아웃</a>
+                        <a href="javascript:f_logout();">로그아웃</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        const v_dropbtn = document.getElementsByClassName("dropbtn")[0];
+        const v_content = document.getElementsByClassName("drop-content")[0];
+
+        // 세션스토리지로부터 값 가져오기
+        let v_id = sessionStorage.getItem("loginId");
+
+        if(v_id != null){
+            v_dropbtn.innerHTML = v_id + "님 ▼";
+        }else{
+            // 해당 태그를 문서 내에서 삭제한다.
+            v_content.remove();
+        }
+
+        // 로그아웃시 세션스토리지에 저장된 값을 삭제하고 새로고침
+        function f_logout(){
+            sessionStorage.removeItem("loginId");
+            location.reload();
+        }
+
+    </script>
+
 </body>
 </html>
