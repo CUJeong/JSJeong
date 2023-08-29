@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지첨부(멀티)</title>
+
+    <style>
+        .container{
+            width: 600px;
+            height: 500px;
+            margin: auto;
+        }
+
+        .img-box{
+            width: 400px;
+            height: 300px;
+            margin: auto;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="img-box"></div>
+        <!-- multiple을 추가해주면 여러개 첨부 가능 -->
+        <input type="file" accept="image/*" onchange="f_drawImg()" multiple>
+    </div>
+
+    <script>
+
+        function f_drawImg(){
+            let v_files = event.target.files;
+            console.log(v_files);
+
+            for(let i = 0; i < v_files.length; i++){
+                let v_file = v_files[i];
+                let v_fileReader = new FileReader();
+                v_fileReader.onload = ()=>{
+                    let v_img = document.createElement("img");
+                    v_img.src = v_fileReader.result;
+                    v_img.style.height = "30%";
+                    document.getElementsByClassName("img-box")[0].appendChild(v_img);
+                }
+                v_fileReader.readAsDataURL(v_file);
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>태그의부모자식찾기</title>
+
+    <style>
+        .container{
+            width: 600px;
+            height: 600px;
+            margin: auto;
+            border: 2px solid black;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .parent{
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+        }
+
+        .parent > div{
+            width: 400px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="parent">
+            <div></div>
+            <div id="control"></div>
+            <div></div>
+        </div>
+    </div>
+
+    <script>
+        // 특정 태그의 부모/자식을 찾아서 사용하게 되면
+        // 태그 각각에 id를 일일히 부여하지 않아도 된다.
+
+        let v_control = document.querySelector("#control");
+
+        v_control.addEventListener("click", ()=>{
+            // 내 형제 중 위에 있는 친구
+            console.log(v_control.previousElementSibling);
+            v_control.previousElementSibling.style.backgroundColor = "red";
+
+            // 내 형제 중 아래에 있는 친구
+            v_control.nextElementSibling.style.backgroundColor = "blue";
+
+            // 부모
+            console.log(v_control.parentElement);
+            console.log(v_control.parentNode);
+            v_control.parentElement.style.backgroundColor = "yellow";
+
+            // 부모의 부모
+            console.log(v_control.parentElement.parentElement);
+            v_control.parentElement.parentElement.style.backgroundColor = "green";
+
+            // 부모를 통해 자식에 접근
+            let v_parent = v_control.parentElement;
+
+            // 자식 요소들이 배열에 순서대로 담겨있다.
+            let v_children = v_parent.children;
+            console.log(v_children);
+
+            v_children[1].style.backgroundColor = "white";
+        });
+
+
+
+    </script>
+
+</body>
+</html>

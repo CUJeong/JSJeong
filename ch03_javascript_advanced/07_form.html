@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form태그</title>
+</head>
+<body>
+    <!-- 서버로 데이터를 보내는 경우 -->
+    <!-- 1. GET 방식 -->
+    <!-- a태그의 href에 주소 뒤에 쿼리스트링을 붙이는 경우 -->
+    <a href="./07_요청받는곳.html?id=akow283&pw=a123">요청시 데이터전달</a>
+    <div>
+        <input type="text" id="inputId" placeholder="아이디">
+        <input type="text" id="inputPw" placeholder="비밀번호">
+        <button onclick="f_login()">로그인</button>
+    </div>
+
+    <!-- form태그에 method=GET 설정 -->
+    <!-- form태그의 action은 요청할 주소 -->
+    <form action="./07_요청받는곳.html" method="GET">
+        <input type="text" placeholder="아이디" name="id">
+        <input type="text" placeholder="비밀번호" name="pw">
+        <!-- type=submit인 버튼을 클릭하면 -->
+        <!-- 이 버튼을 포함하고 있는 form태그의 action이 실행된다. -->
+        <button type="submit">로그인</button>
+    </form>
+
+    <!-- AJAX 통신 시 method=GET 설정 -->
+
+    <!-- 2. POST 방식 -->
+    <!-- form태그에 method=POST 설정 -->
+    <!-- WAS(톰캣)가 아니면 요청받는쪽에서 동작 안함 -->
+    <form action="./07_요청받는곳.html" method="POST">
+        <input type="text" placeholder="아이디" name="id">
+        <input type="text" placeholder="비밀번호" name="pw">
+        <!-- type=submit인 버튼을 클릭하면 -->
+        <!-- 이 버튼을 포함하고 있는 form태그의 action이 실행된다. -->
+        <button type="submit">로그인</button>
+    </form>
+
+    <!-- AJAX 통신 시 method=POST 설정 -->
+
+    <script>
+        const v_id = document.getElementById("inputId");
+        const v_pw = document.getElementById("inputPw");
+
+        function f_login(){
+            location.href = "./07_요청받는곳.html?id=" + v_id.value + "&pw=" + v_pw.value;
+
+        }
+
+    </script>
+</body>
+</html>

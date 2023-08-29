@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>더미데이터</title>
+</head>
+<body>
+    
+    <script>
+        // 게시글의 데이터 구조
+        // 글번호, 글제목, 작성자, 글내용, // 작성일, 조회수, ...
+
+        let v_datas = [];
+
+        let v_json = {};
+        v_json["no"] = 2146;
+        v_json["title"] = "학원 근처 갈만한 식당 추천좀요";
+        v_json["id"] = "a001";
+        v_json["content"] = "점심시간에 메뉴를 고르다가 점심시간이 끝나버림..";
+
+        v_datas.push(v_json);
+
+        v_json = {};
+        v_json["no"] = 2147;
+        v_json["title"] = "스프링 프레임워크가 많이 어렵나요?";
+        v_json["id"] = "b001";
+        v_json["content"] = "곧 배울 생각에 심장이 두근거리고 손발이 달달 떨리네요";
+
+        v_datas.push(v_json);
+
+        v_json = {};
+        v_json["no"] = 2148;
+        v_json["title"] = "10% 확률로 10억, 90% 확률로 100만원을 준다면?";
+        v_json["id"] = "b001";
+        v_json["content"] = "당신의 선택은??";
+
+        v_datas.push(v_json);
+
+        v_json = {};
+        v_json["no"] = 2149;
+        v_json["title"] = "나쁜짓 테스트";
+        v_json["id"] = "c001";
+        // 용도에 따라 태그를 입력한 내용이 html코드처럼
+        // 동작하게 두는 경우가 있고, 대부분은 막는다. (XSS 필터를 이용)
+        v_json["content"] = "<p style='color:red'>ㅋㅋㅋㅋㅋ</p>";
+
+        v_datas.push(v_json);
+
+        localStorage.setItem("boardDB", JSON.stringify(v_datas));
+
+        document.write("생성 완료");
+
+    </script>
+</body>
+</html>

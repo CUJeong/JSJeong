@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validation</title>
+</head>
+<body>
+    <!-- Validation, 유효성 검증 -->
+    <!-- 아이디는 영어와 숫자로 이루어진 5자 이상 -->
+    <!-- 비밀번호는 영어 소문자, 대문자, 숫자, 특수문자 각각 1개 이상 -->
+    <!-- 정규표현식 -->
+    <!-- 자바스크립트 단에서 유효성 검증을 하게 되면 -->
+    <!-- 클라이언트에서 실행을 하기 때문에 서버 요청 횟수를 줄일 수 있다. -->
+    <div>
+        <input type="text" id="inputId">
+        <button onclick="f_checkId()">아이디 체크</button>
+    </div>
+
+    <div>
+        <input type="text" id="inputPw">
+        <button onclick="f_checkPw()">비밀번호 체크</button>
+    </div>
+
+    <div>
+        <input type="text" id="inputPhone">
+        <button onclick="f_checkPhone()">휴대폰 번호 체크</button>
+    </div>
+
+    <div>
+        <input type="text" id="inputEmail">
+        <button onclick="f_checkEmail()">이메일 체크</button>
+    </div>
+
+    <script>
+        const v_id = document.getElementById("inputId");
+
+        function f_checkId(){
+            // 아이디는 영어와 숫자로 이루어진 6~12자여야 한다.
+            let v_val = v_id.value;
+
+            // 정규표현식
+            // 문자열의 시작(^)과 끝($) 사이에
+            // 영어 소문자[a-z] 또는 영어 대문자[A-Z] 또는
+            // 숫자[0-9] 인 문자가 6~12자{6,12}
+            let regex = /^[a-zA-Z0-9]{6,12}$/;
+
+            let v_result = regex.test(v_val);
+        }
+
+        const v_pw = document.getElementById("inputPw");
+
+        function f_checkPw(){
+            let v_val = v_pw.value;
+
+            // 영어 대소문자, 숫자, 특수문자가 각각 1개 이상 포함되는
+            // 8~16글자여야 한다.
+            let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*&)(-=])[a-zA-Z0-9!@#$%?&]{8,16}$/;
+
+            let v_result = regex.test(v_val);
+            console.log(v_result);
+        }
+
+        const v_phone = document.getElementById("inputPhone");
+
+        function f_checkPhone(){
+            let v_val = v_phone.value;
+
+            // 숫자가 10~11자리
+            let regex = /^[0][1][0][0-9]{7,8}$/;
+
+            let v_result = regex.test(v_val);
+            console.log(v_result);
+        }
+
+        const v_email = document.getElementById("inputEmail");
+
+        function f_checkEmail(){
+            let v_val = v_email.value;
+
+            // akow283@gmail.com
+            let regex = /^[a-zA-Z0-9]+[@][a-z]+[.][a-z]+$/;
+
+            let v_result = regex.test(v_val);
+            console.log(v_result);
+        }
+
+    </script>
+
+
+</body>
+</html>

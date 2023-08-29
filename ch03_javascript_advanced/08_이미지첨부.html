@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지첨부</title>
+
+    <style>
+        .container{
+            width: 600px;
+            height: 500px;
+            margin: auto;
+        }
+
+        .img-box{
+            width: 400px;
+            height: 300px;
+            margin: auto;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="img-box"></div>
+        <input type="file" accept="image/*" onchange="f_drawImg()">
+    </div>
+
+    <script>
+
+        function f_drawImg(){
+            // input file 태그
+            console.log(event.target);
+            
+            // input file 태그에 첨부된 파일 목록(json 객체)
+            console.log(event.target.files);
+
+            // 해당 json 객체는 배열처럼 사용하면 된다.
+            console.log(event.target.files[0]);
+
+            // 해당 파일의 확장자
+            console.log(event.target.files[0].type);
+
+            // 이미지 파일이 아니면 알림 띄우기
+            if(!event.target.files[0].type.startsWith("image/")){
+                alert("이미지 파일만 첨부해주세요.");
+                // 첨부된 파일 제거
+                event.target.value = "";
+                return;
+            }
+
+            // 이미지 파일을 img-box에 그리기
+            // 첨부된 이미지 파일
+            let v_file = event.target.files[0];
+
+            // 파일을 읽고(해석해서) 처리할 객체 생성
+            let v_fileReader = new FileReader();
+
+            // 파일 읽기가 완료되면 실행할 함수 작성
+            v_fileReader.onload = function(){
+                // 이미지 태그 생성 후 img-box에 넣기
+                let v_img = document.createElement("img");
+                v_img.src = v_fileReader.result;
+                v_img.style.height = "100%";
+
+                document.getElementsByClassName("img-box")[0].appendChild(v_img);
+            }
+
+            // 파일 읽기
+            v_fileReader.readAsDataURL(v_file);
+        }
+
+    </script>
+
+</body>
+</html>

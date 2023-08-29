@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>querySelector</title>
+
+    <style>
+        .container{
+            width: 800px;
+            height: 600px;
+            margin: auto;
+        }
+
+        .row{
+            display: flex;
+        }
+
+        .col-1{
+            width: 10%;
+        }
+
+        .col-7{
+            width: 70%;
+        }
+
+        .col-2{
+            width: 20%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>게시판 목록</h2>
+        <hr>
+        <div class="row">
+            <div class="col-1">글번호</div>
+            <div class="col-7">제목</div>
+            <div class="col-2">작성자</div>
+        </div>
+        <hr>
+        <div id="content">
+            <div class="row">
+                <div class="col-1">1233</div>
+                <div class="col-7 title">한국에서 매출 1위 과자는?</div>
+                <div class="col-2">농심</div>
+            </div>
+            <div class="row">
+                <div class="col-1">1234</div>
+                <div class="col-7 title">계란한판은 정사각형일까 직사각형일까?</div>
+                <div class="col-2">알쏭달쏭</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // document 객체의 getElement... 메소드와 같이
+        // querySelector 메소드를 이용하여 특정 html 태그 요소를
+        // script 에서 불러올 수 있다.
+
+        // CSS 선택자를 통해 html 태그를 가져올 수 있다.
+        // querySelector는 해당 선택자가 한개든 여러개든 하나만 가져온다.
+        let v_h2 = document.querySelector("h2");
+        v_h2.style.backgroundColor = "yellow";
+
+        // 여러개면 맨 위에있는 요소 하나만 가져옴
+        let v_hr = document.querySelector("hr");
+        console.log(v_hr);
+
+        // querySelectorAll은 선택자가 한개면 한개, 여러개면 여러개
+        // 를 가져온다(둘 다 배열로 가지고 있다)
+        let v_hrs = document.querySelectorAll("hr");
+        console.log(v_hrs);
+        v_hrs[1].style.marginBottom = "0px";
+
+
+        let v_titles = document.querySelectorAll(".title");
+        console.log(v_titles);
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 목록</title>
+
+    <style>
+        .container{
+            width: 800px;
+            height: 600px;
+            margin: auto;
+        }
+
+        .row{
+            display: flex;
+        }
+
+        .col-1{
+            width: 10%;
+        }
+
+        .col-7{
+            width: 70%;
+        }
+
+        .col-2{
+            width: 20%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>게시판 목록</h2>
+        <hr>
+        <div class="row">
+            <div class="col-1">글번호</div>
+            <div class="col-7">제목</div>
+            <div class="col-2">작성자</div>
+        </div>
+        <hr>
+        <div id="content">
+
+        </div>
+        <button onclick="f_write()">글쓰기</button>
+    </div>
+
+    <script>
+        let v_datas = JSON.parse(localStorage.getItem("boardDB"));
+
+        if(v_datas == null){
+            location.href = "./11_더미데이터생성.html";
+        }
+
+        for(let i = 0; i < v_datas.length; i++){
+            let v_board = '<div class="row">';
+            v_board += '<div class="col-1">'+ v_datas[i]["no"] +'</div>';
+            v_board += '<div class="col-7 title">'+ v_datas[i]["title"] +'</div>';
+            v_board += '<div class="col-2">'+ v_datas[i]["id"] +'</div>';
+            v_board += '</div>';
+
+            // apprendChild면 innerHTML += 과 같이 뒤에 추가
+            // prependChild는 아래와 같이 앞에 추가
+            document.querySelector("#content").innerHTML 
+                = v_board + document.querySelector("#content").innerHTML;
+        }
+
+        function f_write(){
+            location.href = "./11_글쓰기.html";
+        }
+
+        let v_titles = document.querySelectorAll(".title");
+
+        for(let i = 0; i < v_titles.length; i++){
+            v_titles[i].style.cursor = "pointer";
+
+            // 각 글제목들에 클릭 이벤트 추가
+            v_titles[i].addEventListener("click", ()=>{
+                // 클릭시 글보기 페이지로 이동
+                // 쿼리스트링으로 해당 글의 글번호를 같이 보낸다.
+                console.log(v_titles[i].parentElement.children[0].innerHTML);
+
+                location.href = "./11_글보기.html?no=" + v_titles[i].parentElement.children[0].innerHTML;
+            });
+
+        }
+
+
+
+    </script>
+
+</body>
+</html>

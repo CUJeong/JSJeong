@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지드래그첨부</title>
+
+    <style>
+        .img-box{
+            width: 600px;
+            height: 400px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="img-box">
+
+    </div>
+    <input id="inputFile" type="file" accept="image/*">
+
+    <script>
+        const v_imgBox = document.getElementsByClassName("img-box")[0];
+        const v_inputFile = document.getElementById("inputFile");
+
+        v_imgBox.addEventListener("drop", () => {
+
+            console.log(event.target);
+
+            console.log(event.dataTransfer);
+
+            // dataTransfer에 담겨있는 파일목록
+            console.log(event.dataTransfer.files);
+
+            // input태그의 파일목록에 dataTransfer의 파일목록을 적용
+            v_inputFile.files = event.dataTransfer.files;
+
+            let v_files = v_inputFile.files;
+
+            for(let i = 0; i < v_files.length; i++){
+                let v_file = v_files[i];
+                let v_fileReader = new FileReader();
+                v_fileReader.onload = ()=>{
+                    let v_img = document.createElement("img");
+                    v_img.src = v_fileReader.result;
+                    v_img.style.height = "50%";
+                    v_imgBox.appendChild(v_img);
+                };
+                v_fileReader.readAsDataURL(v_file);
+            }
+
+        });
+
+
+
+        // 기본적으로 브라우저에 이미지 파일을 
+        // 드래그 앤 드롭 하면 새창이 열리면서 이미지를 보여준다.
+        // 기본으로 설정된 드래그 앤 드롭 이벤트를 막아주어야 한다.
+        window.addEventListener("dragover", function(){
+            event.preventDefault();
+        });
+
+        window.addEventListener("drop", ()=>{
+            event.preventDefault();
+
+            // 우리가 정의한 로직 실행
+        });
+
+    </script>
+</body>
+</html>

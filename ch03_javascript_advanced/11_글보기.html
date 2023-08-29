@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <h2></h2>
+    <h3></h3>
+    <hr>
+    <div></div>
+
+    <script src="../resources/js/myJs.js"></script>
+    <script>
+        // 1. 넘어온 no값을 캐치
+        let v_no = getParameter("no");
+        console.log(v_no);
+
+        // 2. localStorage에 저장돼있는 데이터 중 해당 no와 같은 데이터 캐치
+        let v_boardDB = JSON.parse(localStorage.getItem("boardDB"));
+        for(let i = 0; i < v_boardDB.length; i++){
+            if(v_boardDB[i]["no"] == v_no){
+                // 3. 찾아낸 데이터의 title, id, content값을 이용하여 화면에 그려줌
+                document.querySelector("h2").innerHTML = v_boardDB[i]["title"];
+                document.querySelector("title").innerHTML = v_boardDB[i]["title"];
+                document.querySelector("h3").innerHTML = v_boardDB[i]["id"];
+                document.querySelector("div").innerHTML = v_boardDB[i]["content"];
+            }
+        }
+
+
+
+
+    </script>
+
+</body>
+</html>
