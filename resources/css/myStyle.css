@@ -3,6 +3,10 @@
     display: flex;
 }
 
+.justify-content-end{
+    justify-content: end;
+}
+
 div{
     border: 1px solid black;
 }

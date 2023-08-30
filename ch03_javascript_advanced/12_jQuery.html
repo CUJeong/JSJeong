@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+
+    <!-- 구글에 jquery cdn 치면 나옴 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <style>
+        .container{
+            width: 800px;
+            height: 600px;
+            margin: auto;
+        }
+
+        .row{
+            display: flex;
+        }
+
+        .col-1{
+            width: 10%;
+        }
+
+        .col-7{
+            width: 70%;
+        }
+
+        .col-2{
+            width: 20%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>게시판 목록</h2>
+        <hr>
+        <div class="row">
+            <div class="col-1">글번호</div>
+            <div class="col-7">제목</div>
+            <div class="col-2">작성자</div>
+        </div>
+        <hr>
+        <div id="content">
+
+        </div>
+        <button onclick="f_write()">글쓰기</button>
+        <img id="myImg" src="" alt="">
+    </div>
+
+    <script>
+        // jQuery는 기존 자바스크립트 코드를 좀 더 간결하게 사용할 수 있도록
+        // 만들어진 자바스크립트 라이브러리이다.
+        // jQuery를 사용하지 않고 순수한 자바스크립트 코드를 이용하는 것을
+        // 바닐라 자바스크립트라고 한다.
+        // jQuery로 구현하는 기능들은 전부 바닐라 자바스크립트로 구현이 가능!!
+        
+        // querySelector와 같이 CSS 선택자로 html태그를 가져온다.
+        $("h2").css("backgroundColor", "yellow");
+
+        $("hr").css("borderColor", "red");
+
+        console.log($("hr"));
+        console.log($("hr").length);
+
+        $("hr").eq(1).css("borderColor", "blue");
+
+        let v_boardDB = JSON.parse(localStorage.getItem("boardDB"));
+
+        for(let i = 0; i < v_boardDB.length; i++){
+            let v_board = '<div class="row">';
+            v_board += '<div class="col-1">'+ v_boardDB[i]["no"] +'</div>';
+            v_board += '<div class="col-7 title">'+ v_boardDB[i]["title"] +'</div>';
+            v_board += '<div class="col-2">'+ v_boardDB[i]["id"] +'</div>';
+            v_board += '</div>';
+
+            // innerHTML 은 .html()
+            // innerHTML = aaa 와 같이 .html(aaa)
+            // $("#content").html(v_board + $("#content").html());
+            $("#content").prepend(v_board);  // 위와 같다.
+        }
+
+        $(".title").css("cursor", "pointer");
+
+        $(".title").on("click", ()=>{
+
+            console.log($(event.target));
+            // 현재 태그의 부모 태그 찾기
+            console.log($(event.target).parent());
+            // 자식 태그 찾기
+            console.log($(event.target).parent().children());
+            console.log($(event.target).parent().children().eq(0));
+            console.log($(event.target).parent().children().eq(0).html());
+
+            $(location).attr("href", "./11_글보기.html?no=" + $(event.target).parent().children().eq(0).html());
+        });
+
+        // 메소드 체이닝도 지원한다.
+        $("#myImg").attr("src", "https://velog.velcdn.com/images%2Fyoungblue%2Fpost%2Ff29d7267-0498-4319-b72d-f17b7944b243%2F99CE4C415BF2B5FB18.png")
+                   .css("border", "2px solid black")
+                   .css("height", "200px");
+        
+        
+
+
+
+    </script>
+</body>
+</html>
