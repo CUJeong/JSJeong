@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX통신</title>
+</head>
+<body>
+    <button onclick="f_send()">가져오기</button>
+    <div id="result"></div>
+
+    <script>
+        // AJAX, Asynchronous JavaScript And XML (비동기 자바스크립트와 XML문서)
+        // 요즘은 JSON 형태가 지배적이다.
+
+        function f_send(){
+
+            // 비동기 통신 객체 생성
+            let v_ajax = new XMLHttpRequest();
+
+            // https://exchangerate.host/#/
+            // open(요청방식, 요청주소)
+            v_ajax.open("GET", "https://api.exchangerate.host/timeseries?start_date=2020-08-01&end_date=2021-08-01");
+
+            // 통신이 끝나면 하고자 하는 행동
+            v_ajax.onload = function(){
+                document.querySelector("#result").innerHTML = v_ajax.response;
+
+                localStorage.setItem("rateDB", v_ajax.response);
+            }
+
+            // 통신시작
+            v_ajax.send();
+        }
+
+
+
+
+    </script>
+
+</body>
+</html>

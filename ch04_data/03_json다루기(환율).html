@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON다루기(환율)</title>
+</head>
+<body>
+    <select id="selectCountry" onchange="">
+        <option value="KRW">KRW</option>
+        <option value="JPY">JPY</option>
+    </select>
+    <div id="content"></div>
+
+
+
+    <script>
+        let v_rateDB = JSON.parse(localStorage.getItem("rateDB"));
+        console.log(v_rateDB);
+
+        let v_rates = v_rateDB["rates"];
+        console.log(v_rates);
+
+        // v_rates JSON 객체의 모든 Key값을 배열에 담기
+        let v_dateArray = Object.keys(v_rates);
+        console.log(v_dateArray);
+
+        // 2021-01-01 KRW 환율을 꺼내보기
+        console.log(v_rates["2021-01-01"]["KRW"]);
+
+        // 1년치 한국 환율 데이터 수집
+        // 각 날짜에 대한 환율 정보가 같이 담기도록 수집
+        let v_krwArray = [];
+        for(let i = 0; i < v_dateArray.length; i++){
+            // { date: 2020-08-01, rate: 1360 }
+            let v_temp = {};
+            v_temp["date"] = v_dateArray[i];
+            v_temp["rate"] = v_rates[v_dateArray[i]]["KRW"];
+
+            v_krwArray.push(v_temp);
+        }
+
+        console.log(v_krwArray);
+
+        // v_krwArray를 통해 KRW의 환율이 가장 높을때의 날짜와
+        // 가장 낮을때의 날짜, 1년치 환율 평균값 출력
+        let v_max = v_krwArray[0];
+        for(let i = 0; i < v_krwArray.length; i++){
+            if(v_max["rate"] < v_krwArray[i]["rate"]){
+                v_max = v_krwArray[i];
+            }
+        }
+        console.log(v_max);
+
+        let v_min = v_krwArray[0];
+        for(let i = 0; i < v_krwArray.length; i++){
+            if(v_min["rate"] > v_krwArray[i]["rate"]){
+                v_min = v_krwArray[i];
+            }
+        }
+        console.log(v_min);
+
+        let v_sum = 0;
+        for(let i = 0; i < v_krwArray.length; i++){
+            v_sum += v_krwArray[i]["rate"];
+        }
+        let v_avg = v_sum/v_krwArray.length;
+        console.log(v_avg);
+
+        let v_myRates = {};
+        v_myRates["KRW"] = v_krwArray;
+
+        console.log(v_myRates);
+
+        // 모든 나라의 통화코드 배열로 가져오기
+        let v_countryArray = Object.keys(v_rates["2020-08-01"]);
+        console.log(v_countryArray);
+
+        // v_rates 와 v_dateArray 와 v_countryArray를 이용해서
+        // v_myRates 를 완성시키기
+        for(let i = 0; i < v_countryArray.length; i++){
+            let v_tempArray = [];
+            for(let k = 0; k < v_dateArray.length; k++){
+                // { date: 2020-08-01, rate: 1360 }
+                let v_temp = {};
+                v_temp["date"] = v_dateArray[k];
+                v_temp["rate"] = v_rates[v_dateArray[k]][v_countryArray[i]];
+
+                v_tempArray.push(v_temp);
+            }
+            v_myRates[v_countryArray[i]] = v_tempArray;
+        }
+        console.log(v_myRates);
+        
+
+        const v_select = document.querySelector("#selectCountry");
+
+        for(let i = 0; i < v_countryArray.length; i++){
+            // <option value="KRW">KRW</option>
+            let v_option = "<option value='" + v_countryArray[i] + "'>";
+                v_option += v_countryArray[i] + "</option>";
+
+            v_select.innerHTML += v_option;
+        }
+
+        v_select.addEventListener("change", () => {
+            document.querySelector("#content").innerHTML = "";
+            // v_myRates를 이용하여 선택한 통화코드의 
+            // 날짜별 환율을 화면에 그려주기
+
+            // 2020-08-01: 1300
+            // 2020-08-02: 1400
+
+            console.log(v_select.value);
+            let v_selectArray = v_myRates[v_select.value];
+            for(let i = 0; i < v_selectArray.length; i++){
+                let v_str = "<h4>" + v_selectArray[i]["date"];
+                    v_str += ": " + v_selectArray[i]["rate"] + "</h4>";
+
+                document.querySelector("#content").innerHTML += v_str;
+            }
+
+        });
+
+
+
+    </script>
+</body>
+</html>

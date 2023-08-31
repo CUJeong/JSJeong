@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>막대그래프</title>
+</head>
+<body>
+    <button onclick="f_click(this)">java</button>
+    <button onclick="f_click(this)">database</button>
+    <button onclick="f_click(this)">javascript</button>
+    <div style="width: 600px; height:400px">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../resources/js/myJs.js"></script>
+    <script>
+        // 05_score.csv 파일을 AJAX 통신으로 불러와야 함
+        let v_score = {};
+
+        let v_ajax = new XMLHttpRequest();
+        v_ajax.open("GET", "./05_score.csv");
+
+        v_ajax.onload = () => {
+            console.log(v_ajax.response);
+
+            let v_response = v_ajax.response;
+
+            let v_rows = v_response.split("\n");
+            console.log(v_rows);
+
+            let v_headers = v_rows[0].split(",");
+            console.log(v_headers);  // ['name', 'java', 'database', 'javascript']
+
+            for(let i = 0; i < v_headers.length; i++){
+                v_score[v_headers[i]] = [];
+            }
+            console.log(v_score);
+
+            for(let i = 1; i < v_rows.length - 1; i++){
+                let v_cols = v_rows[i].split(",");
+
+                for(let k = 0; k < v_headers.length; k++){
+                    v_score[v_headers[k]].push(v_cols[k]);
+                }
+            }
+            console.log(v_score);
+
+            myChart = new Chart(ctx, {
+                type: 'bar', // bar, line, pie, doughnut, rader
+                data: {
+                    labels: v_score["name"],
+                    datasets: [{
+                        label: 'java',
+                        data: v_score['java'],
+                        borderWidth: 1,
+                        backgroundColor: 'red'
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+        }
+
+        v_ajax.send();
+
+        function f_click(p_this){
+            console.log(p_this.innerHTML);
+
+            f_draw(p_this.innerHTML);
+        }
+
+        const ctx = document.getElementById('myChart');
+        let myChart;
+
+        function f_draw(p_subject){
+            // new Chart로 최초로 생성된 myChart를 수정
+            myChart["data"]["datasets"][0]["label"] = p_subject;
+            myChart["data"]["datasets"][0]["data"] = v_score[p_subject];
+            myChart["data"]["datasets"][0]["backgroundColor"] = f_rgbColor();
+
+            // 변경 사항을 다시 그린다.
+            myChart.update();
+        }
+
+    </script>
+
+</body>
+</html>

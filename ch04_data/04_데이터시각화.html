@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터시각화</title>
+    <!-- Chart.js , D3.js , 구글차트 -->
+
+    <style>
+        .container{
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>학생 지역 조사</h3>
+    <div class="container">
+        <!-- canvas의 width, height은 비율을 지정한다. -->
+        <!-- 크기 조정은 canvas를 감싸고 있는 div를 통해 준다. -->
+        <canvas id="myChart" width="150" height="100"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar', // bar, line, pie, doughnut, rader
+            data: {
+                labels: ['유성구', '서구', '동구', '중구', '대덕구', '그 외'],
+                datasets: [{
+                    label: '지역별 거주 학생수',
+                    data: [1, 6, 2, 3, 5, 11],
+                    borderWidth: 1,
+                    backgroundColor: ['red', 'blue', 'yellow', 'green', 'pink', 'orange']
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

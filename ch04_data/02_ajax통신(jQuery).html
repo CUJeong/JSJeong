@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax통신(jQuery)</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <button onclick="f_send()">가져오기</button>
+    <div id="result"></div>
+
+    <script>
+
+        function f_send(){
+
+            $.ajax({
+                "url": "https://api.exchangerate.host/timeseries",
+                "method": "GET",
+                "data":{
+                    "start_date": "2020-08-01",
+                    "end_date": "2021-08-01",
+                    "base": "USD"
+                },
+                "dataType": "JSON",
+                "success": function(response){
+                    // response는 JSON 객체
+                    document.querySelector("#result").innerHTML = JSON.stringify(response);
+
+                    localStorage.setItem("rateDB", JSON.stringify(response));
+                },
+                "error": function(){
+                    alert("즐~");
+                }
+
+            });
+
+
+
+        }
+
+
+
+    </script>
+
+</body>
+</html>

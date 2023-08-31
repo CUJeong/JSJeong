@@ -23,8 +23,14 @@
     
     <div class="container">
         <div>
+            <select id="selectLiter">
+                <option value="5ℓ가격">5ℓ가격</option>
+                <option value="10ℓ가격" selected>10ℓ가격</option>
+                <option value="20ℓ가격">20ℓ가격</option>
+            </select>
             <input id="inputRegion" type="text">
             <button onclick="f_search()">검색</button>
+            <button id="btnSort" onclick="f_sort()">정렬▼</button>
         </div>
         <div id="content"></div>
     </div>
@@ -104,25 +110,94 @@
 
         // 데이터를 화면에 뿌리기
         const v_content = document.querySelector("#content");
+        const v_region = document.querySelector("#inputRegion");
+        const v_liter = document.querySelector("#selectLiter");
 
-        for(let i = 0; i < v_records.length; i++){
-            if(v_records[i]["종량제봉투사용대상"] == "가정용"
-                && v_records[i]["종량제봉투용도"] == "생활쓰레기"
-                && v_records[i]["종량제봉투종류"] == "규격봉투"
-                && v_records[i]["종량제봉투처리방식"] == "소각용"){
+        function f_search(){
 
-                let v_str = "<h3>" + v_records[i]["시도명"];
-                v_str += " | " + v_records[i]["시군구명"];
-                v_str += " | " + v_records[i]["10ℓ가격"];
+            // 기존에 그려져 있는 내용 지우고
+            v_content.innerHTML = "";
 
+            // 검색어를 포함하는 데이터를 그리기
+            for(let i = 0; i < v_records.length; i++){
+
+                if(v_records[i]["종량제봉투사용대상"] == "가정용"
+                    && v_records[i]["종량제봉투용도"] == "생활쓰레기"
+                    && v_records[i]["종량제봉투종류"] == "규격봉투"
+                    && v_records[i]["종량제봉투처리방식"] == "소각용"
+                    && v_records[i]["시도명"].indexOf(v_region.value) != -1){
+
+                    let v_str = "<h3>" + v_records[i]["시도명"];
+                    v_str += " | " + v_records[i]["시군구명"];
+                    v_str += " | " + v_liter.value + ": " + v_records[i][v_liter.value] + "</h3>";
+    
+                    v_content.innerHTML += v_str;
+                }
+            }
+
+        }
+
+        f_search();
+
+        // isDirection = false면 내림차순
+        // isDirection = true면 오름차순
+        let isDirection = false;
+        const v_btnSort = document.querySelector("#btnSort");
+        function f_sort(){
+            // 화면 초기화
+            v_content.innerHTML = "";
+
+            // 조건에 맞는 데이터를 배열에 담은 후
+            // 배열을 정렬 시킨 후 화면에 그리기
+
+            let v_array = [];
+            for(let i = 0; i < v_records.length; i++){
+                if(v_records[i]["종량제봉투사용대상"] == "가정용"
+                    && v_records[i]["종량제봉투용도"] == "생활쓰레기"
+                    && v_records[i]["종량제봉투종류"] == "규격봉투"
+                    && v_records[i]["종량제봉투처리방식"] == "소각용"
+                    && v_records[i]["시도명"].indexOf(v_region.value) != -1){
+
+                    v_array.push(v_records[i]);
+
+                }
+            }
+
+            // 배열 정렬
+            // [ {}, {}, {}, {}, ...]
+            // function(a,b) 에서 a와 b는 배열 내 요소(객체)
+            // 왼쪽과 오른쪽을 의미
+
+            if(isDirection){
+                // 오름차순
+                v_btnSort.innerHTML = "정렬▲";
+                v_array.sort(function(a, b){
+                    // 왼쪽과 오른쪽 값의 차이를 리턴해주면
+                    // 값의 차이가 양수 또는 음수이므로
+                    // 이에 맞춰서 정렬이 발생한다.
+                    return a[v_liter.value] - b[v_liter.value];
+                });
+            }else{
+                // 내림차순
+                v_btnSort.innerHTML = "정렬▼";
+                v_array.sort(function(a, b){
+                    // 왼쪽과 오른쪽 값의 차이를 리턴해주면
+                    // 값의 차이가 양수 또는 음수이므로
+                    // 이에 맞춰서 정렬이 발생한다.
+                    return b[v_liter.value] - a[v_liter.value];
+                });
+            }
+            isDirection = !isDirection;
+
+            // 화면에 그리기
+            for(let i = 0; i < v_array.length; i++){
+                let v_str = "<h3>" + v_array[i]["시도명"];
+                    v_str += " | " + v_array[i]["시군구명"];
+                    v_str += " | " + v_liter.value + ": " + v_array[i][v_liter.value] + "</h3>";
+    
                 v_content.innerHTML += v_str;
             }
         }
-
-
-
-
-
 
 
 
