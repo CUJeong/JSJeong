@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방사형그래프</title>
+</head>
+<body>
+    <div style="width: 600px; height: 400px;">
+        <canvas id="myChart"></canvas>
+    </div>
+    <div style="width: 600px; height: 400px;">
+        <canvas id="myChart2"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // 레이더(radarChart), 방사형(marksChart), 거미줄 차트
+        // 특정 객체들의 스텟을 표현하기에 적합
+
+        const ctx = document.getElementById("myChart");
+
+        new Chart(ctx, {
+            type: "radar",
+            data: {
+                labels: ["속도", "지구력", "골결정력", "외모", "패스"],
+                datasets: [
+                    {
+                        label: "손흥민",
+                        data: [5, 5, 4, 3, 3]
+                    }
+                ]
+            },
+            options: {
+                scale: {
+                    ticks: {
+                        stepSize: 1.0
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById("myChart2");
+
+        new Chart(ctx2, {
+            type: "radar",
+            data: {
+                labels: ["속도", "지구력", "골결정력", "외모", "패스"],
+                datasets: [
+                    {
+                        label: "손흥민",
+                        backgroundColor: "transparent",
+                        borderColor: "rgba(0,0,0,0.5)",
+                        pointRadius: 0,
+                        data: [5, 5, 4, 3, 3]
+                    },
+                    {
+                        label: "홀란드",
+                        backgroundColor: "transparent",
+                        borderColor: "rgba(255,0,0,0.5)",
+                        pointRadius: 0,
+                        data: [5, 4, 5, 5, 3]
+                    }
+                ]
+            },
+            options: {
+                scale: {
+                    ticks: {
+                        stepSize: 1.0
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>

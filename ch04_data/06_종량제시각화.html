@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종량제시각화</title>
+</head>
+<body>
+    
+    <div style="width: 600px; height: 400px;">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../resources/js/myJs.js"></script>
+    <script>
+        let v_ajax = new XMLHttpRequest();
+        
+        v_ajax.open("GET", "./01_price.json");
+
+        v_ajax.onload = () => {
+            console.log(v_ajax.response);
+
+            let v_price = JSON.parse(v_ajax.response);
+            console.log(v_price);
+
+            let v_myData = {};
+
+            let v_records = v_price["records"];
+
+            let v_labels = ["서울", "인천", "부산", "세종"];
+            
+            for(let i = 0; i < v_records.length; i++){
+                for(let k = 0; k < v_labels.length; k++){
+                    if(v_records[i]["시도명"].indexOf(v_labels[k]) != -1
+                        && v_records[i]["종량제봉투사용대상"] == "가정용"
+                        && v_records[i]["종량제봉투용도"] == "생활쓰레기"
+                        && v_records[i]["종량제봉투종류"] == "규격봉투"
+                        && v_records[i]["종량제봉투처리방식"] == "소각용"){
+
+                        v_myData[v_labels[k]] = {
+                            "5l" : v_records[i]["5ℓ가격"],
+                            "10l" : v_records[i]["10ℓ가격"],
+                            "20l" : v_records[i]["20ℓ가격"]
+                        };
+                    }
+                }
+            }
+
+            console.log(v_myData);
+
+            let v_datasets = [];
+
+            // ['5l', '10l', '20l']
+            let v_liter = Object.keys(v_myData["서울"]);
+
+            for(let i = 0; i < v_liter.length; i++){
+                let v_temp = {};
+                v_temp["label"] = v_liter[i];
+
+                // [서울의 5l가격, 인천의 5l가격, 부산의 5l가격, 세종의 5l가격]
+                // [서울의 10l가격, 인천의 10l가격, 부산의 10l가격, 세종의 10l가격]
+                let v_tempArray = [];
+                for(let k = 0; k < v_labels.length; k++){
+                    v_tempArray.push(v_myData[v_labels[k]][v_liter[i]]);
+                }
+                v_temp["data"] = v_tempArray;
+                v_temp["borderWidth"] = 1;
+                v_temp["backgroundColor"] = f_rgbColor();
+                v_datasets.push(v_temp);
+            }
+
+            console.log(v_datasets);
+
+            new Chart(ctx, {
+                type: 'bar', // bar, line, pie, doughnut, rader
+                data: {
+                    labels: v_labels,
+                    datasets: v_datasets
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+        }
+
+        v_ajax.send();
+
+        const ctx = document.querySelector("#myChart");
+        
+
+
+    </script>
+
+</body>
+</html>

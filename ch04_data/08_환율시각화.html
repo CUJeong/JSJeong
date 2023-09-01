@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>환율시각화</title>
+</head>
+<body>
+    <div style="width: 600px; height: 400px;">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let v_rateDB = JSON.parse(localStorage.getItem("rateDB"));
+        console.log(v_rateDB);
+
+        let v_rates = v_rateDB["rates"];
+        console.log(v_rates);
+
+        let v_labels = Object.keys(v_rates);
+        let v_krwData = [];
+        for(let i = 0; i < v_labels.length; i++){
+            v_krwData.push(v_rates[v_labels[i]]["KRW"]);
+        }
+
+        const ctx = document.getElementById("myChart");
+
+        // 날짜에 대한 값의 변화를 보여주는데 적합
+        let v_chart = new Chart(ctx, {
+            type: 'line', // bar, line, pie, doughnut, rader
+            data: {
+                labels: v_labels,
+                datasets: [{
+                    label: 'KRW',
+                    data: v_krwData,
+                    borderWidth: 2,
+                    borderColor: 'blue',
+                    pointRadius: 0   // 점 표기 삭제 (수치를 키우면 나타남)
+                }]
+            },
+            options: {
+                elements: {
+                    line: {
+                        tension: 0.1  // 수치가 커지면 꺾이는 부분이 부드러워진다.
+                    }
+                }
+            }
+        });
+
+        // v_state가 0이면 일년치, v_state가 1이면 한달치, v_state가 2면 일주일치
+        let v_state = 0;
+        ctx.addEventListener("wheel", ()=>{
+            // 휠을 올리면 양수, 내리면 음수
+            console.log(event.wheelDelta);
+
+            if(event.wheelDelta > 0){
+                v_state++;
+                if(v_state >= 3){
+                    v_state = 2;
+                }
+            }else{
+                v_state--;
+                if(v_state < 0){
+                    v_state = 0;
+                }
+            }
+            console.log(v_state);   
+            
+            f_update();
+        });
+
+        function f_update(){
+            let v_tempLabels = [];
+            let v_tempData = [];
+
+            // v_state가 0이면 일년치
+            if(v_state == 0){
+                v_tempLabels = v_labels;
+                v_tempData = v_krwData;
+            }else if(v_state == 1){  // 한달치 (30개 ~ 2021-08-01)
+                for(let i = v_labels.length-30; i < v_labels.length; i++){
+                    v_tempLabels.push(v_labels[i]);
+                    v_tempData.push(v_rates[v_labels[i]]["KRW"]);
+                }
+            }else if(v_state == 2){  // 일주일치 (7개 ~ 2021-08-01)
+                for(let i = v_labels.length-7; i < v_labels.length; i++){
+                    v_tempLabels.push(v_labels[i]);
+                    v_tempData.push(v_rates[v_labels[i]]["KRW"]);
+                }
+            }
+
+            v_chart["data"]["labels"] = v_tempLabels;
+            v_chart["data"]["datasets"][0]["data"] = v_tempData;
+            v_chart.update();
+        }
+
+
+    </script>
+
+</body>
+</html>

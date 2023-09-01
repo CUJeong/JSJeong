@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>꺾은선그래프</title>
+</head>
+<body>
+    <div style="width: 600px; height: 400px;">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById("myChart");
+
+        // 날짜에 대한 값의 변화를 보여주는데 적합
+        new Chart(ctx, {
+            type: 'line', // bar, line, pie, doughnut, rader
+            data: {
+                labels: ['2018', '2019', '2020', '2021', '2022'],
+                datasets: [{
+                    label: 'JSP',
+                    data: [10000, 9000, 7000, 8000, 6000],
+                    borderWidth: 2,
+                    borderColor: 'blue',
+                    pointRadius: 0   // 점 표기 삭제 (수치를 키우면 나타남)
+                }, {
+                    label: 'Vue.js',
+                    data: [6000, 7000, 9000, 8000, 7000],
+                    borderWidth: 3,     // 선 굵기
+                    borderColor: 'red', // 선 색상  
+                    pointRadius: 0      // 점 표기 삭제 (수치를 키우면 나타남)
+                }, {
+                    type: "bar",   // 차트 형식을 별도로 지정
+                    label: 'JSP',
+                    data: [10000, 9000, 7000, 8000, 6000],
+                    borderWidth: 2,
+                    borderColor: 'blue',
+                    backgroundColor: "rgba(0, 0, 255, 0.2)",
+                    barThickness: 30,  // 막대 그래프 바의 두께 조정
+                    pointRadius: 0   // 점 표기 삭제 (수치를 키우면 나타남)
+                }]
+            },
+            options: {
+                elements: {
+                    line: {
+                        tension: 0.1  // 수치가 커지면 꺾이는 부분이 부드러워진다.
+                    }
+                }
+            }
+        });
+
+
+
+    </script>
+
+</body>
+</html>

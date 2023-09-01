@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>과제데이터수집</title>
+
+    <!-- 공공데이터 포털 -->
+    <!-- 미세먼지 검색 - Open API 탭 - 한국환경공단_에어코리아_미세먼지 경보 발령 현황 -->
+    <!-- https://www.data.go.kr/data/15073885/openapi.do -->
+
+</head>
+<body>
+    
+    <button onclick="f_send()">요청 보내기</button>
+
+    <script>
+
+        function f_send(){
+            let pageNo = 1;
+
+            f_ajax(pageNo);
+        }
+
+        let v_airData = [];
+
+        function f_ajax(p_pageNo){
+            /* Javascript 샘플 코드 */
+            var xhr = new XMLHttpRequest();
+            var url = 'http://apis.data.go.kr/B552584/UlfptcaAlarmInqireSvc/getUlfptcaAlarmInfo'; /*URL*/
+            var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'0N5jROZjYbg248ucE8OzxVjKA0x6MR8WyU%2FkXRYr4b%2BRE5Umkj2FogOfhqlzBX0aoBBLL41iaQJqrJ6GxiqzAg%3D%3D'; /*Service Key*/
+            queryParams += '&' + encodeURIComponent('returnType') + '=' + encodeURIComponent('json'); /**/
+            queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /**/
+            queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent(p_pageNo); /**/
+            queryParams += '&' + encodeURIComponent('year') + '=' + encodeURIComponent('2022'); /**/
+            queryParams += '&' + encodeURIComponent('itemCode') + '=' + encodeURIComponent('PM10'); /**/
+            xhr.open('GET', url + queryParams);
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4) {
+
+                    // response으로 온 데이터의 수가 0이 될때까지 재귀함수
+                    let v_json = JSON.parse(this.responseText);
+                    console.log(v_json["response"]["body"]["items"].length);
+                    if(v_json["response"]["body"]["items"].length > 0){
+
+                        let v_items = v_json["response"]["body"]["items"];
+
+                        for(let i = 0; i < v_items.length; i++){
+                            v_airData.push(v_items[i]);
+                        }
+
+                        p_pageNo++;
+                        f_ajax(p_pageNo);
+                    }else{
+                        // data가 0개 오는 구간
+                        document.write("데이터를 전부 들어왔습니다.");
+                        localStorage.setItem("airData", JSON.stringify(v_airData));
+                    }
+
+                }
+            };
+    
+            xhr.send('');
+        }
+
+
+    </script>
+
+</body>
+</html>

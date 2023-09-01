@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML과JSON변환</title>
+
+    <!-- cdn으로 xml to json 라이브러리 불러오기 -->
+    <!-- cdnjs 사이트에서 xml json 검색 후 나온 x2js 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/x2js/1.2.0/xml2json.min.js" integrity="sha512-HX+/SvM7094YZEKOCtG9EyjRYvK8dKlFhdYAnVCGNxMkA59BZNSZTZrqdDlLXp0O6/NjDb1uKnmutUeuzHb3iQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body>
+    
+    <script>
+        let v_xmlStr = "<나만의태그>";
+        v_xmlStr += "<이름>이지용</이름>";
+        v_xmlStr += "<나이>25</나이>";
+        v_xmlStr += "</나만의태그>";
+
+        // xml문자열을 xml객체로 바꿔줄 수 있는 객체
+        let v_parser = new DOMParser();
+
+        let v_xml = v_parser.parseFromString(v_xmlStr, "text/xml");
+
+        console.log(v_xml);
+        console.log(v_xml.getElementsByTagName("이름")[0].innerHTML);
+
+        
+        let v_x2js = new X2JS();
+
+        // xml 문자열을 JSON 타입으로 변경
+        let v_json = v_x2js.xml_str2json(v_xmlStr);
+
+        console.log(v_json);
+        console.log(v_json["나만의태그"]["이름"]);
+
+        // xml 객체를 JSON 타입으로 변경
+        let v_json2 = v_x2js.xml2json(v_xml);
+        console.log(v_json2);
+
+        // JSON 객체를 xml 객체로 변환
+        v_xml = v_x2js.json2xml(v_json);
+        console.log(v_xml);
+
+        // JSON 객체를 xml 문자열로 변환
+        v_xmlStr = v_x2js.json2xml_str(v_json);
+        console.log(v_xmlStr);
+
+    </script>
+    
+</body>
+</html>

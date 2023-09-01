@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>원그래프</title>
+</head>
+<body>
+    <div style="width: 600px; height: 400px;">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // 원 그래프(pie chart)는 비율을 보는데 적합하다.
+        // 도넛 그래프(doughnut chart)는 원 그래프 가운데 구멍이 뚫려있는 것
+
+        const ctx = document.getElementById("myChart");
+
+        new Chart(ctx, {
+            type: 'doughnut', // pie, doughnut
+            data: {
+                // 11명중
+                labels: ['아우디', '폭스바겐', '볼보', '벤츠', 'BMW'],
+                datasets: [{
+                    data: [1, 1, 2, 3, 4]
+                }]
+            }
+        });
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<xml>
+    <players>
+        <player>
+            <name>손흥민</name>
+            <stat>
+                <shooting>5</shooting>
+                <pass>4</pass>
+                <face>3</face>
+                <speed>5</speed>
+                <earth>5</earth>
+            </stat>
+        </player>    
+    
+        <player>
+            <name>홀란드</name>
+            <stat>
+                <shooting>5</shooting>
+                <pass>4</pass>
+                <face>5</face>
+                <speed>5</speed>
+                <earth>4</earth>
+            </stat>
+        </player> 
+    
+    </players>
+</xml>
